@@ -1,0 +1,12 @@
+
+# Visual studio files
+*.vs
+*.swp
+*.agignore
+*_ignore
+*.ignore.*
+
+# Bond artifacts
+*Rules_Bond*
+*_proxies.cs
+*_services.cs

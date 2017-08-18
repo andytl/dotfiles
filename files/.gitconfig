@@ -1,0 +1,63 @@
+[core]
+	excludesfile = ~/.gitignore
+
+[alias]
+	lgr = log --graph --decorate=full --abbrev-commit --date=relative
+	lg = log --graph --decorate=full --abbrev-commit
+	a = add .
+	s = status
+	st = stash
+	stp = stash pop
+	b = branch -vv
+	ba = branch -vv -a
+	bd = branch -d
+	bdf = branch -D
+	d = diff
+	dw = diff --color-words
+	dd = diff develop
+	dds = diff develop
+	dm = diff master
+	dmw = diff master --color-words
+	ddw = diff develop --color-words
+	dh = diff head
+	dhw = diff head --color-words
+	rl = reflog
+	r = reset --hard
+	rh = reset --hard head
+	rbd = rebase develop
+	rbm = rebase master
+	rbid = rebase --interactive develop
+	rbc = rebase --continue
+	rba = rebase --abort
+	m = merge
+	md = merge develop
+	c = checkout
+	c1 = checkout @{-1}
+	c2 = checkout @{-2}
+	c3 = checkout @{-3}
+	cm = checkout master
+	cd = checkout develop
+	po = push origin
+	pof = push origin --force
+	ct = commit
+	cta = commit --amend
+	p = pull
+	fp = fetch origin --prune
+	rc = config --global -e
+
+[push]
+	default = current
+
+[status]
+	showUntrackedFiles = all
+
+[diff]
+	renames = copies
+	mnemonicprefix = true
+	wordRegex = \\w+|.
+
+[branch]
+	autosetupmerge = true
+
+[include]
+	path = ~/.local.gitconfig

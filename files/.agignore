@@ -1,0 +1,8 @@
+# Build files
+obj/
+objd/
+bin/
+
+# Package folders
+nupkgs/
+packages/
