@@ -1,0 +1,17 @@
+[
+    {
+        "Destination": ".gitconfig",
+        "Source": "files/.gitconfig",
+        "Mode": "File"
+    },
+    {
+        "Destination": ".gitconfig",
+        "Source": "files/.gitconfig",
+        "Mode": "File"
+    },
+    {
+        "Destination": ".gitignore",
+        "Source": "files/.gitignore",
+        "Mode": "File"
+    }
+]

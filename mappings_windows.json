@@ -1,0 +1,17 @@
+[
+    {
+        "Destination": "Documents\\WindowsPowerShell\\Microsoft.PowerShell_profile.ps1",
+        "Source": "powershell\\profile\\Microsoft.PowerShell_profile.ps1",
+        "Mode": "File"
+    },
+    {
+        "Destination": "Documents\\WindowsPowerShell\\Microsoft.PowerShellISE_profile.ps1",
+        "Source": "powershell\\profile\\Microsoft.PowerShellISE_profile.ps1",
+        "Mode": "File"
+    },
+    {
+        "Destination": "Documents\\AutoHotKeyU64.ahk",
+        "Source": "files\\AutoHotKeyU64.ahk",
+        "Mode": "File"
+    }
+]
