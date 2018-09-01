@@ -2,7 +2,7 @@
 # Visual studio files
 *.vs
 *.swp
-*.agignore
+.agignore
 *_ignore
 *.ignore.*
 
@@ -10,3 +10,10 @@
 *Rules_Bond*
 *_proxies.cs
 *_services.cs
+
+# Ignore local changes to nuget config unless specifically wanted to be commited
+Nuget.config
+
+
+# Using this to prevent NPM from running in Dashboard
+npm.bat
