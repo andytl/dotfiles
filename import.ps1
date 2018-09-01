@@ -24,11 +24,10 @@ function NormalizeToWindowsPath ($path) {
 }
 
 function MoveFile ($from, $to, $mode) {
+    Write-Host "[$mode] $from --> $to"
     if ($mode -ceq "Directory") {
-        #echo "Copy-Item -Recurse -Force -Path $from -Destination $to"
         Copy-Item -Recurse -Force -Path $from -Destination $to
     } else {
-        #echo "Copy-Item -Force -Path $from -Destination $to"
         Copy-Item -Force -Path $from -Destination $to
     }
 }

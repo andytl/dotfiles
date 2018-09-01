@@ -13,5 +13,10 @@
         "Destination": "Documents\\AutoHotKeyU64.ahk",
         "Source": "files\\AutoHotKeyU64.ahk",
         "Mode": "File"
+    },
+    {
+        "Destination": "_vimrc",
+        "Source": "files\\.vimrc",
+        "Mode": "File"
     }
 ]
