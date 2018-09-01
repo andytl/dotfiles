@@ -12,6 +12,8 @@ Param(
     [string] $externalRepoDir
 )
 
+$startDir = Get-Location
+
 $commitMessage = "User-initiated dotfile backup $((Get-Date).ToUniversalTime())"
 
 function CommitAndPush($dir) {
@@ -29,3 +31,5 @@ Write-Host "Backing up dotfiles"
 Write-Host "Commiting and pushing changes"
 CommitAndPush $dotFilesRepoDir
 CommitAndPush $externalRepoDir
+
+Set-Location $startDir
