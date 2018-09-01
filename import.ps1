@@ -11,36 +11,7 @@ Param(
 
 Set-StrictMode -Version Latest
 
-function EnsureTrailingSlash($path) {
-    if ($path.EndsWith("\")) {
-        $path
-    } else {
-        $path + "\"
-    }
-}
-
-function NormalizeToWindowsPath ($path) {
-    $path.Replace("/", "\")
-}
-
-function MoveFile ($from, $to, $mode) {
-    Write-Host "[$mode] $from --> $to"
-    if ($mode -ceq "Directory") {
-        Copy-Item -Recurse -Force -Path $from -Destination $to
-    } else {
-        Copy-Item -Force -Path $from -Destination $to
-    }
-}
-function ProcessMapping ($mapping) {
-    $sourceFullPath = $repoDir + (NormalizeToWindowsPath $mapping.Source)
-    $destinationFullPath = $homeDir + (NormalizeToWindowsPath $mapping.Destination)
-    
-    if ($importMode) {
-        MoveFile $sourceFullPath $destinationFullPath $mapping.Mode
-    } else {
-        MoveFile $destinationFullPath $sourceFullPath $mapping.Mode
-    }
-}
+. "$repoDir\import-common.ps1"
 
 $homeDir = EnsureTrailingSlash $homeDir
 $repoDir = EnsureTrailingSlash $repoDir
@@ -48,5 +19,5 @@ $repoDir = EnsureTrailingSlash $repoDir
 $windowsMapping = Get-Content -Raw "$repoDir\mappings_windows.json" | ConvertFrom-Json
 $commonMapping = Get-Content -Raw "$repoDir\mappings_common.json" | ConvertFrom-Json
 
-$windowsMapping | ForEach-Object { ProcessMapping $_ }
-$commonMapping | ForEach-Object { ProcessMapping $_ }
+$windowsMapping | ForEach-Object { ProcessMapping $repoDir $homeDir $_ $importMode }
+$commonMapping | ForEach-Object { ProcessMapping $repoDir $homeDir $_ $importMode }

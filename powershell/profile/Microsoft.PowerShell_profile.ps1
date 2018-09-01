@@ -44,6 +44,9 @@ function rc {
 function Import-DotFiles ($importMode = $false) {
     & "$env:USERPROFILE\Source\Repos\dotfiles\import.ps1" $env:USERPROFILE "$env:USERPROFILE\Source\Repos\dotfiles" $importMode
 }
+function Import-Work-DotFiles ($importMode = $false) {
+    & "$env:USERPROFILE\Source\Repos\dotfiles\import-external.ps1" $env:USERPROFILE "$env:USERPROFILE\Source\Repos\dotfiles" "$env:USERPROFILE\Source\Repos\DES.Developer.Andlam" $importMode
+}
 
 ### Helper Functions [HLPR] ###
 
