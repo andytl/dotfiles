@@ -18,5 +18,10 @@
         "Destination": "_vimrc",
         "Source": "files\\.vimrc",
         "Mode": "File"
+    },
+    {
+        "Destination": "Documents\\WindowsPowerShell\\Scripts",
+        "Source": "powershell\\scripts",
+        "Mode": "Directory"
     }
 ]

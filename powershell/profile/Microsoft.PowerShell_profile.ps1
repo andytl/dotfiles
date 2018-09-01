@@ -41,6 +41,10 @@ function rc {
   . "$env:USERPROFILE\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
 }
 
+function Backup-DotFiles () {
+    Run-DotFileBackup $env:USERPROFILE "$env:USERPROFILE\Source\Repos\dotfiles" "$env:USERPROFILE\Source\Repos\DES.Developer.Andlam"
+}
+
 function Import-DotFiles ($importMode = $false) {
     & "$env:USERPROFILE\Source\Repos\dotfiles\import.ps1" $env:USERPROFILE "$env:USERPROFILE\Source\Repos\dotfiles" $importMode
 }
