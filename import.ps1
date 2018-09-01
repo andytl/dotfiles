@@ -5,6 +5,7 @@ Param(
     [Parameter(Mandatory=$true,Position=2)]
     [string] $repoDir,
     # true = Copy (import) into home dir, false = copy into repo
+    [Parameter(Mandatory=$false,Position=3)]
     [switch] $importMode = $false
 )
 
@@ -24,14 +25,16 @@ function NormalizeToWindowsPath ($path) {
 
 function MoveFile ($from, $to, $mode) {
     if ($mode -ceq "Directory") {
-        echo "Copy-Item -Recurse -Force -Path $from -Destination $to"
+        #echo "Copy-Item -Recurse -Force -Path $from -Destination $to"
+        Copy-Item -Recurse -Force -Path $from -Destination $to
     } else {
-        echo "Copy-Item -Force -Path $from -Destination $to"
+        #echo "Copy-Item -Force -Path $from -Destination $to"
+        Copy-Item -Force -Path $from -Destination $to
     }
 }
 function ProcessMapping ($mapping) {
     $sourceFullPath = $repoDir + (NormalizeToWindowsPath $mapping.Source)
-    $destinationFullPath = $repoDir + (NormalizeToWindowsPath $mapping.Destination)
+    $destinationFullPath = $homeDir + (NormalizeToWindowsPath $mapping.Destination)
     
     if ($importMode) {
         MoveFile $sourceFullPath $destinationFullPath $mapping.Mode
