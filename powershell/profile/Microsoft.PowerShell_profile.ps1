@@ -1,3 +1,4 @@
+# Hello world (Dotfile backup test)
 
 # Table of Contents
 # Helper Functions [HLPR]
@@ -42,7 +43,7 @@ function rc {
 }
 
 function Backup-DotFiles () {
-    Run-DotFileBackup $env:USERPROFILE "$env:USERPROFILE\Source\Repos\dotfiles" "$env:USERPROFILE\Source\Repos\DES.Developer.Andlam"
+    Run-DotfileBackup $env:USERPROFILE "$env:USERPROFILE\Source\Repos\dotfiles" "$env:USERPROFILE\Source\Repos\DES.Developer.Andlam"
 }
 
 function Import-DotFiles ($importMode = $false) {
