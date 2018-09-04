@@ -23,5 +23,10 @@
         "Destination": "Documents\\WindowsPowerShell\\Scripts",
         "Source": "powershell\\scripts",
         "Mode": "Directory"
+    },
+    {
+        "Destination": "Documents\\WindowsPowerShell\\Modules\\Personal",
+        "Source": "powershell\\modules",
+        "Mode": "Directory"
     }
 ]

@@ -12,6 +12,17 @@ Set-StrictMode -Version Latest
 Import-Module "$env:USERPROFILE\Documents\WindowsPowerShell\Modules\posh-git\0.7.1\posh-git.psm1" # posh-git
 Import-Module PSReadLine
 
+try {
+    Import-Module -Name "Personal\Common" -Force 
+} catch {
+    Write-Error "Could not load module Personal\Common"
+}
+try {
+    Import-Module -Name "WorkSpecific\XflowDevelopment"
+} catch {
+    Write-Error "Could not load module Personal\Common"
+}
+
 # Setup PSReadLine
 Set-PSReadlineKeyHandler -Key Tab -Function Complete
 Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
@@ -55,31 +66,10 @@ function Import-Work-DotFiles ($importMode = $false) {
 
 ### Helper Functions [HLPR] ###
 
-function regexEscape ($stringForRegex) {
-    [System.Text.RegularExpressions.Regex]::Escape($stringForRegex)
-}
-
-function formatTime ($time) {
-    $time.ToString("h:mm tt")
-}
-function formatTimeSpan ($timespan, $seconds = $false) {
-    $fmt = "m\m"
-    if ($timespan.Hours -gt 0 -or $timespan.Days -gt 0) {
-        $fmt = "h\h\ " + $fmt
-    }
-    if ($timespan.Days -gt 0) {
-        $fmt = "d\d\ " + $fmt
-    }
-    if ($seconds) {
-        $fmt = $fmt + "\ s\s"
-    }
-    $timespan.ToString($fmt)
-}
-
 # Coding [CDNG]
 
 function ca ($mode) {
-
+    Set-CodeAnalysisMode (Read-AnswerToBool $mode)
 }
 
 function fmtjson_clip {
@@ -101,20 +91,20 @@ function gctp ($commitMessage) {
 }
 
 function gitBranchCleanup() {
-    $branches = ($(git branch) | ? { -not $_.StartsWith("*") }).Trim()
+    $branches = ($(git branch) | Where-Object { -not $_.StartsWith("*") }).Trim()
 
-    $allBranches = ($(git branch --all) | ? { -not $_.StartsWith("*") -and  -not $_.StartsWith("HEAD") -and $_.StartsWith("  remotes/origin/") }).Trim().Replace("remotes/origin/", "")
+    $allBranches = ($(git branch --all) | Where-Object { -not $_.StartsWith("*") -and  -not $_.StartsWith("HEAD") -and $_.StartsWith("  remotes/origin/") }).Trim().Replace("remotes/origin/", "")
     # Might get expensive in future if lots of branch
-    $delete = $branches | ? { $allBranches -notcontains $_ }
+    $delete = $branches | Where-Object { $allBranches -notcontains $_ }
     
     Write-Host "Branches to delete"
-    $delete | % { Write-Host $_ }
+    $delete | ForEach-Object { Write-Host $_ }
 
     #TODO refactor into method
     $resp = Read-Host "Proceed?"
     if ($resp -cin @("t", "true", "y", "yes"))
     {
-        $delete | % { git branch -D $_ }
+        $delete | ForEach-Object { git branch -D $_ }
     }
 }
 
