@@ -8,20 +8,18 @@
 
 Set-StrictMode -Version Latest
 
+$UserPSModulePath = "$env:USERPROFILE\Documents\WindowsPowerShell\Modules"
+if (-not $env:PSModulePath.Contains($UserPSModulePath)) {
+    $env:PSModulePath += ";$UserPSModulePath"
+}
+
 # Imports=
-Import-Module "$env:USERPROFILE\Documents\WindowsPowerShell\Modules\posh-git\0.7.1\posh-git.psm1" # posh-git
+Import-Module posh-git
 Import-Module PSReadLine
 
-try {
-    Import-Module -Name "Personal\Common" -Force 
-} catch {
-    Write-Error "Could not load module Personal\Common"
-}
-try {
-    Import-Module -Name "WorkSpecific\XflowDevelopment"
-} catch {
-    Write-Error "Could not load module Personal\Common"
-}
+Import-Module "Personal\Common" -Force 
+# Work specific module if it exists
+Import-Module "WorkSpecific\XflowDevelopment" -Force
 
 # Setup PSReadLine
 Set-PSReadlineKeyHandler -Key Tab -Function Complete

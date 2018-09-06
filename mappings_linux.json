@@ -1,0 +1,7 @@
+[
+    {
+        "Destination": ".config/Code/User/settings.json",
+        "Source": "files/vscode/settings.json",
+        "Mode": "File"
+    }
+]

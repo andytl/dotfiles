@@ -20,6 +20,11 @@
         "Mode": "File"
     },
     {
+        "Destination": "AppData\\Roaming\\Code\\User\\settings.json",
+        "Source": "files\\vscode\\settings.json",
+        "Mode": "File"
+    },
+    {
         "Destination": "Documents\\WindowsPowerShell\\Scripts",
         "Source": "powershell\\scripts",
         "Mode": "Directory"
