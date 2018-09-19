@@ -27,3 +27,71 @@ function Set-CodeAnalysisMode {
     $newCaFile = $caFile -replace "<RunCodeAnalysis>\w*</RunCodeAnalysis>", "<RunCodeAnalysis>$mode</RunCodeAnalysis>"
     Set-Content -Path ".\build.props" -Value $newCaFile -Force
 }
+
+
+function Start-Watch($from, $to, $debugLogFile = $null) {
+    Start-Job -ScriptBlock {
+        param ($from, $to, $debugLogFile)
+        function LogString($string) {
+            if ($debugLogFile) {
+                Add-Content $debugLogFile "$((get-date).ToString("hh:mm:ss")) [Watch] - $string"
+            }
+        }
+        function HandleChange($eventArgs) {
+            $name = $eventArgs.Name
+            $src = [System.IO.Path]::Combine($from, $name)
+            $dest = [System.IO.Path]::Combine($to, $name)
+            $srcItem = Get-Item $src
+            if ($srcItem.PSIsContainer) {
+                if (-not (Test-Path $dest)) {
+                    New-Item $dest -ItemType Directory
+                    LogString "[$($eventArgs.ChangeType)] CopyDirectory  $src to $dest"
+                }
+            } else {
+                Copy-Item $src -Destination $dest -Force
+                LogString "[$($eventArgs.ChangeType)] Copy $src to $dest"
+            }
+        }
+        function HandleDeleted($eventArgs) {
+            $name = $eventArgs.Name
+            $dest = [System.IO.Path]::Combine($to, $name)
+            Remove-Item $dest -Force -Recurse
+            LogString "Deleted $dest"
+        }
+        function HandleRename($eventArgs) {
+            $oldName = [System.IO.Path]::Combine($to, $eventArgs.OldName)
+            $newName = [System.IO.Path]::Combine($to, $eventArgs.Name)
+            Move-Item -Path $oldName -Destination $newName -Force
+            LogString "Rename $oldName to $newName"
+        }
+        try {
+            LogString "Create Watcher from $from to $to"
+
+            $watcher = New-Object System.IO.FileSystemWatcher -Property @{
+                Path = $from;
+                IncludeSubdirectories = $true
+            }
+            
+            $watcherId = (New-Guid).ToString()
+            Register-ObjectEvent -InputObject $watcher -EventName Created -SourceIdentifier "$watcherId`_Created" -Action { HandleChange $event.SourceEventArgs }
+            Register-ObjectEvent -InputObject $watcher -EventName Deleted -SourceIdentifier "$watcherId`_Deleted" -Action { HandleDeleted $event.SourceEventArgs }
+            Register-ObjectEvent -InputObject $watcher -EventName Changed -SourceIdentifier "$watcherId`_Changed" -Action { HandleChange $event.SourceEventArgs }
+            Register-ObjectEvent -InputObject $watcher -EventName Renamed -SourceIdentifier "$watcherId`_Renamed" -Action { HandleRename $event.SourceEventArgs }
+
+            $watcher.EnableRaisingEvents = $true
+
+            while ($true) {
+                Start-Sleep -Seconds 1
+            }
+        } finally {
+            if ($watcher) {
+                $watcher.EnableRaisingEvents = $false
+                Unregister-Event -SourceIdentifier "$watcherId`_Created"
+                Unregister-Event -SourceIdentifier "$watcherId`_Deleted"
+                Unregister-Event -SourceIdentifier "$watcherId`_Changed"
+                Unregister-Event -SourceIdentifier "$watcherId`_Renamed"
+            }
+            LogString "Unregister events for from $from to $to"
+        }
+    } -ArgumentList $from, $to, $debugLogFile
+}

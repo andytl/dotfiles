@@ -39,6 +39,8 @@ Set-Alias g git
 Set-Alias cjson ConvertTo-Json
 Set-Alias gclip Get-Clipboard
 
+function dotrepo { Set-Location "C:\Users\andlam\Source\Repos\dotfiles" }
+
 function erc {
   gvim "$env:USERPROFILE\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
 }
