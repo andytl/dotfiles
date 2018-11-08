@@ -28,6 +28,30 @@ function Set-CodeAnalysisMode {
     Set-Content -Path ".\build.props" -Value $newCaFile -Force
 }
 
+# Reads Ini file into Double-nested Hash
+# Taken From https://blogs.technet.microsoft.com/heyscriptingguy/2011/08/20/use-powershell-to-work-with-any-ini-file/
+function Get-IniContent($filePath)
+{
+    $ini = @{}
+    switch -regex -file $FilePath
+    {
+        "^\[(.+)\]" # Section
+        {
+            $section = $matches[1]
+            $ini[$section] = @{}
+            $CommentCount = 0
+        }
+        "^(;.*)$" # Comment
+        {
+        }
+        "(.+?)\s*=(.*)" # Key
+        {
+            $name,$value = $matches[1..2]
+            $ini[$section][$name] = $value
+        }
+    }
+    return $ini
+}
 
 function Start-Watch($from, $to, $debugLogFile = $null) {
     Start-Job -ScriptBlock {
