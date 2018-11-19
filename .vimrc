@@ -16,6 +16,7 @@ filetype off                  " required
 Plugin 'gmarik/vundle'
 " ==== Language Addons ====
   "Plugin 'kchmck/vim-coffee-script'
+  Plugin 'vhda/verilog_systemverilog.vim'
 
 " ==== Plugins follow below ====
   Plugin 'scrooloose/nerdtree'
@@ -57,6 +58,10 @@ Plugin 'gmarik/vundle'
     "let g:syntastic_cpp_config_file = '.syntastic_cpp_config' " Actually default
     "Html
     let g:syntastic_html_tidy_exec = 'tidy5'
+  Plugin 'racer-rust/vim-racer'
+    let g:racer_cmd = "/home/andytl/.cargo/bin/racer"
+    let g:racer_experimental_completer = 1
+  Plugin 'rust-lang/rust.vim'
 call vundle#end()
 filetype plugin indent on
 
