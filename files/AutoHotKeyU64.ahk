@@ -6,7 +6,7 @@
 ; 
 
 
-#Include AutoHotKeyU64_WorkSpecific.ahk
+#Include %A_MyDocuments%\AutoHotKeyU64_WorkSpecific.ahk
 
 #h::
   Run "C:\Program Files (x86)\Vim\vim74\gvim.exe" "%A_MyDocuments%\AutoHotKeyU64.ahk"

@@ -15,6 +15,9 @@ function NormalizeToWindowsPath ($path) {
 function MoveFile ($from, $to, $mode) {
     Write-Host "[$mode] $from --> $to"
     if ($mode -ceq "Directory") {
+        if (-not (Test-Path -Path $to)) {
+            New-Item -Path $to -ItemType Directory
+        }
         Copy-Item -Recurse -Force -Path ((EnsureTrailingSlash $from) + "*") -Destination $to
     } else {
         Copy-Item -Force -Path $from -Destination $to
