@@ -9,7 +9,13 @@
 #Include %A_MyDocuments%\AutoHotKeyU64_WorkSpecific.ahk
 
 #h::
-  Run "C:\Program Files (x86)\Vim\vim74\gvim.exe" "%A_MyDocuments%\AutoHotKeyU64.ahk"
+  Run notepad "%A_MyDocuments%\AutoHotKeyU64.ahk" ; "C:\Program Files (x86)\Vim\vim74\gvim.exe"
+  Sleep 5000
+  WinActivate, AutoHotKeyU64.ahk - Notepad
+return
+
+#y::
+  Run notepad "%A_MyDocuments%\AutoHotKeyU64_WorkSpecific.ahk" ; "C:\Program Files (x86)\Vim\vim74\gvim.exe"
   Sleep 5000
   WinActivate, AutoHotKeyU64
 return
@@ -22,6 +28,8 @@ return
 return
 
 #t::Run "C:\Program Files\ConEmu\ConEmu64.exe"
+#p::SendInput . C:\Users\andlam\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1{Enter}
+
 ; Remap the windows movement to only require ctrl and not the winkey
 ;#9::SendInput,{Ctrl down}{LWin down}{Left}{Ctrl up}{LWin up}
 ;#0::SendInput,{Ctrl down}{LWin down}{Right}{Ctrl up}{LWin up}

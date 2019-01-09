@@ -39,6 +39,22 @@ Set-Alias g git
 Set-Alias cjson ConvertTo-Json
 Set-Alias gclip Get-Clipboard
 
+function flp ([Parameter(ValueFromPipeline = $true)]$inputObject) {
+  $inputObject | Format-List -Property *
+}
+
+function gmi ($inputObject) {
+  Get-Member -InputObject $inputObject
+}
+
+function galp ($pattern) {
+  Get-Alias | Where-Object { $_.DisplayName -match $pattern }
+}
+
+function sbpf ($commandFileName) {
+  Set-PSBreakpoint -Script (Get-Command $commandFileName).Source -Line 1
+}
+
 function dotrepo { Set-Location "C:\Users\andlam\Source\Repos\dotfiles" }
 
 function erc {

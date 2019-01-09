@@ -2,5 +2,7 @@
     "workbench.colorTheme": "Monokai",
     "editor.accessibilitySupport": "off",
     "git.enableSmartCommit": true,
-    "telemetry.enableTelemetry": false
+    "telemetry.enableTelemetry": false,
+    "breadcrumbs.enabled": false,
+    "editor.tabSize": 2
 }
