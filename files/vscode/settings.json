@@ -4,5 +4,14 @@
     "git.enableSmartCommit": true,
     "telemetry.enableTelemetry": false,
     "breadcrumbs.enabled": false,
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "nmake.hide-large-folder-notification": true,
+    "nmake.razzleTerminal": {
+        "createOnContextChange": "Disabled",
+        "createOnStart": "Never",
+        "displayOptions": "Never"
+    },
+    "vim.useSystemClipboard": true,
+    "window.zoomLevel": 0,
+    "editor.minimap.enabled": false
 }
