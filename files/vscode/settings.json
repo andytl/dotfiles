@@ -3,7 +3,7 @@
     "editor.accessibilitySupport": "off",
     "git.enableSmartCommit": true,
     "telemetry.enableTelemetry": false,
-    "breadcrumbs.enabled": false,
+    "breadcrumbs.enabled": true,
     "editor.tabSize": 2,
     "nmake.hide-large-folder-notification": true,
     "nmake.razzleTerminal": {
@@ -13,5 +13,13 @@
     },
     "vim.useSystemClipboard": true,
     "window.zoomLevel": 0,
-    "editor.minimap.enabled": false
+    "editor.minimap.enabled": false,
+    "editor.glyphMargin": false,
+    "editor.renderControlCharacters": true,
+    "editor.renderWhitespace": "all",
+    "editor.fontSize": 15,
+    "cSpell.language": "en",
+    "cSpell.checkLimit": 5000,
+    "cSpell.maxDuplicateProblems": 30,
+    "cSpell.maxNumberOfProblems": 1000
 }
