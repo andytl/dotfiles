@@ -18,8 +18,8 @@
     "editor.renderControlCharacters": true,
     "editor.renderWhitespace": "all",
     "editor.fontSize": 15,
-    "cSpell.language": "en",
-    "cSpell.checkLimit": 5000,
-    "cSpell.maxDuplicateProblems": 30,
-    "cSpell.maxNumberOfProblems": 1000
+    "cSpell.language": "en,en-US",
+    "cSpell.checkLimit": 10000,
+    "cSpell.maxDuplicateProblems": 100,
+    "cSpell.maxNumberOfProblems": 5000
 }
