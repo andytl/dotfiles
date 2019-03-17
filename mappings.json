@@ -10,6 +10,21 @@
         "Platforms": ["Windows", "Mac", "Linux"]
     },
     {
+        "Destination": ".inputrc",
+        "Source": "files/.inputrc",
+        "Platforms": ["Mac", "Linux"]
+    },
+    {
+        "Destination": ".bash_profile",
+        "Source": "files/.bash_profile",
+        "Platforms": ["Mac", "Linux"]
+    },
+    {
+        "Destination": ".tmux.conf",
+        "Source": "files/.tmux.conf",
+        "Platforms": ["Mac", "Linux"]
+    },
+    {
         "Destination": "_vimrc",
         "Source": "files/.vimrc",
         "Platforms": ["Windows"]
