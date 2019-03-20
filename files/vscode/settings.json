@@ -4,7 +4,6 @@
     "git.enableSmartCommit": true,
     "telemetry.enableTelemetry": false,
     "breadcrumbs.enabled": true,
-    "editor.tabSize": 2,
     "nmake.hide-large-folder-notification": true,
     "nmake.razzleTerminal": {
         "createOnContextChange": "Disabled",
@@ -22,5 +21,6 @@
     "cSpell.checkLimit": 10000,
     "cSpell.maxDuplicateProblems": 100,
     "cSpell.maxNumberOfProblems": 5000,
-    "editor.fontFamily": "Inconsolata, Consolas, 'Courier New', monospace"
+    "editor.fontFamily": "Inconsolata, Consolas, Menlo, Monaco, 'Courier New', monospace",
+    "explorer.confirmDelete": false
 }

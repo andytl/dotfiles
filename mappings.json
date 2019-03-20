@@ -1,0 +1,77 @@
+[
+    {
+        "Destination": ".gitconfig",
+        "Source": "files/.gitconfig",
+        "Platforms": ["Windows", "Mac", "Linux"]
+    },
+    {
+        "Destination": ".gitignore",
+        "Source": "files/.gitignore",
+        "Platforms": ["Windows", "Mac", "Linux"]
+    },
+    {
+        "Destination": ".inputrc",
+        "Source": "files/.inputrc",
+        "Platforms": ["Mac", "Linux"]
+    },
+    {
+        "Destination": ".bash_profile",
+        "Source": "files/.bash_profile",
+        "Platforms": ["Mac", "Linux"]
+    },
+    {
+        "Destination": ".tmux.conf",
+        "Source": "files/.tmux.conf",
+        "Platforms": ["Mac", "Linux"]
+    },
+    {
+        "Destination": "_vimrc",
+        "Source": "files/.vimrc",
+        "Platforms": ["Windows"]
+    },
+    {
+        "Destination": ".vimrc",
+        "Source": "files/.vimrc",
+        "Platforms": ["Mac", "Linux"]
+    },
+    {
+        "Destination": ".config/Code/User/settings.json",
+        "Source": "files/vscode/settings.json",
+        "Platforms": ["Linux"]
+    },
+    {
+        "Destination": "AppData/Roaming/Code/User/settings.json",
+        "Source": "files/vscode/settings.json",
+        "Platforms": ["Windows"]
+    },
+    {
+        "Destination": "Library/Application Support/Code/User/settings.json",
+        "Source": "files/vscode/settings.json",
+        "Platforms": ["Mac"]
+    },
+    {
+        "Destination": "Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1",
+        "Source": "powershell/profile/Microsoft.PowerShell_profile.ps1",
+        "Platforms": ["Windows"]
+    },
+    {
+        "Destination": "Documents/WindowsPowerShell/Microsoft.PowerShellISE_profile.ps1",
+        "Source": "powershell/profile/Microsoft.PowerShellISE_profile.ps1",
+        "Platforms": ["Windows"]
+    },
+    {
+        "Destination": "Documents/AutoHotKeyU64.ahk",
+        "Source": "files/AutoHotKeyU64.ahk",
+        "Platforms": ["Windows"]
+    },
+    {
+        "Destination": "Documents/WindowsPowerShell/Scripts",
+        "Source": "powershell/scripts",
+        "Platforms": ["Windows"]
+    },
+    {
+        "Destination": "Documents/WindowsPowerShell/Modules/Personal",
+        "Source": "powershell/modules",
+        "Platforms": ["Windows"]
+    }
+]
