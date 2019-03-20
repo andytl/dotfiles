@@ -17,6 +17,42 @@ function Get-EscapedRegex {
     [System.Text.RegularExpressions.Regex]::Escape($stringForRegex)
 }
 
+# Takes a range list e.g. "1-3,4,6" and enumerates the range into the
+# pipeline. For that input, output is 1,2,3,4,6
+function Get-RangeList {
+    param (
+        [string] $userIndicies
+    )
+    foreach ($userRange in $userIndicies -split ",") {
+        if ($userRange -match "\-") {
+            $rangeParams = $userRange -split "\-"
+            $rangeParams[0]..$rangeParams[1]
+        } else {
+            $userRange
+        }
+    }
+}
+
+# Takes an array and the output of Enumerate-RangeList and filters
+# The array to the given elements
+function Get-FilterArray {
+    param (
+        $array,
+        $indicesToKeep
+    )
+    $indicesToKeepMap = @{}
+    foreach ($index in $indicesToKeep) {
+        $indicesToKeepMap["$index"] = $true
+    }
+    $i = 0;
+    foreach ($element in $array) {
+        if ($indicesToKeepMap["$i"]) {
+            $array[$i]
+        }
+        $i++
+    }
+}
+
 # Coding and build
 
 function Set-CodeAnalysisMode {

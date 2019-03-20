@@ -55,6 +55,10 @@ function sbpf ($commandFileName) {
   Set-PSBreakpoint -Script (Get-Command $commandFileName).Source -Line 1
 }
 
+function cbp {
+  Get-PSBreakpoint | Remove-PSBreakpoint
+}
+
 function dotrepo { Set-Location "C:\Users\andlam\Source\Repos\dotfiles" }
 
 function erc {

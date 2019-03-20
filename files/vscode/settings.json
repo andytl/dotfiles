@@ -17,9 +17,10 @@
     "editor.glyphMargin": false,
     "editor.renderControlCharacters": true,
     "editor.renderWhitespace": "all",
-    "editor.fontSize": 15,
+    "editor.fontSize": 16,
     "cSpell.language": "en,en-US",
     "cSpell.checkLimit": 10000,
     "cSpell.maxDuplicateProblems": 100,
-    "cSpell.maxNumberOfProblems": 5000
+    "cSpell.maxNumberOfProblems": 5000,
+    "editor.fontFamily": "Inconsolata, Consolas, 'Courier New', monospace"
 }
