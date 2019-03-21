@@ -26,6 +26,7 @@ function WaitForAllOf {
 
 # Get Git for windows
 function GetGitForWindows {
+    Write-Output "GetGitForWindows"
     $inf = @"
 [Setup]
 Lang=default
@@ -46,8 +47,7 @@ PerformanceTweaksFSCache=Enabled
 UseCredentialManager=Enabled
 EnableSymlinks=Disabled
 "@
-    Write-Output "GetGitForWindows"
-    Out-File -FilePath ".\git_settings.inf" -Encoding utf8 -Force
+    $inf | Out-File -FilePath ".\git_settings.inf" -Encoding utf8 -Force
     $releasesList = Invoke-RestMethod "https://api.github.com/repos/git-for-windows/git/releases"
     $release = $releasesList | Sort-Object -Property published_at -Descending | Where-Object { $_.name -match "Git For Windows" } | Select-Object -First 1
     $releaseExeAsset = $release.assets | Where-Object { $_.name -match "Git-.*-64-bit.exe" }
@@ -89,7 +89,17 @@ function GetPython {
 }
 
 function GetFirefox {
+    Write-Output "GetFirefox"
+    $inf = @"
+[Install]
+QuickLaunchShortcut=false
+TaskbarShortcut=false
+DesktopShortcut=false
+"@
+    $inf | Out-File -FilePath ".\firefox_settings.ini" -Encoding utf8 -Force
     Invoke-WebRequest "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US" -OutFile firefox_install.exe
+    .\firefox_install.exe "/INI=$workingDir\firefox_settings.ini"
+    WaitForAllOf "setup"
 }
 
 function GetDotfileRepo {
@@ -102,9 +112,11 @@ function GetDotfileRepo {
     python "$repoDir\import.py" $env:USERPROFILE $repoDir import
 }
 
-#GetGitForWindows
+GetFirefox
+GetGitForWindows
 GetPython
 RefreshPath
 GetDotfileRepo
-
+<#
+#>
 Write-Output "Reboot the shell to continue...."
