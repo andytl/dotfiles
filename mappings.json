@@ -1,5 +1,10 @@
 [
     {
+        "Destination": "python",
+        "Source": "python",
+        "Platforms": ["Windows", "Mac", "Linux"]
+    },
+    {
         "Destination": ".gitconfig",
         "Source": "files/.gitconfig",
         "Platforms": ["Windows", "Mac", "Linux"]

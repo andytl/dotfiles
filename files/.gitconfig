@@ -1,5 +1,6 @@
 [core]
 	excludesfile = ~/.gitignore
+	autocrlf = false
 
 [alias]
 	lgr = log --graph --decorate=full --abbrev-commit --date=relative
@@ -65,5 +66,9 @@
 [branch]
 	autosetupmerge = true
 
+# Expected to include
+#  core.editoruser.name/email,
+#  credential.helper
+#  and any custom aliases.
 [include]
 	path = ~/.local.gitconfig

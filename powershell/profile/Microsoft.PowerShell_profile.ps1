@@ -10,7 +10,11 @@ Set-StrictMode -Version Latest
 
 $UserPSModulePath = "$env:USERPROFILE\Documents\WindowsPowerShell\Modules"
 if (-not $env:PSModulePath.Contains($UserPSModulePath)) {
-    $env:PSModulePath += ";$UserPSModulePath"
+  $env:PSModulePath += ";$UserPSModulePath"
+}
+$UserPythonPath = "$env:USERPROFILE\python"
+if (-not $env:PSModulePath.Contains($UserPythonPath)) {
+  $env:PSModulePath += ";$UserPythonPath"
 }
 
 # Imports=
@@ -18,8 +22,6 @@ Import-Module posh-git
 Import-Module PSReadLine
 
 Import-Module "Personal\Common" -Force 
-# Work specific module if it exists
-Import-Module "WorkSpecific\XflowDevelopment" -Force
 
 # Setup PSReadLine
 Set-PSReadlineKeyHandler -Key Tab -Function Complete
@@ -34,7 +36,7 @@ if (Test-Path alias:curl) {
 }
 
 
-Set-Alias np "C:\Program Files\Notepad++\notepad++.exe"
+Set-Alias np "C:\Program Files (x86)\Notepad++\notepad++.exe"
 Set-Alias g git
 Set-Alias cjson ConvertTo-Json
 Set-Alias gclip Get-Clipboard
@@ -74,14 +76,11 @@ function rc {
 }
 
 function Backup-DotFiles () {
-    Run-DotfileBackup $env:USERPROFILE "$env:USERPROFILE\Source\Repos\dotfiles" "$env:USERPROFILE\Source\Repos\DES.Developer.Andlam"
+  python "$env:USERPROFILE\Source\Repos\dotfiles\import.py" $env:USERPROFILE "$env:USERPROFILE\Source\Repos\dotfiles" backup
 }
 
-function Import-DotFiles ($importMode = $false) {
-    & "$env:USERPROFILE\Source\Repos\dotfiles\import.ps1" $env:USERPROFILE "$env:USERPROFILE\Source\Repos\dotfiles" $importMode
-}
-function Import-Work-DotFiles ($importMode = $false) {
-    & "$env:USERPROFILE\Source\Repos\dotfiles\import-external.ps1" $env:USERPROFILE "$env:USERPROFILE\Source\Repos\dotfiles" "$env:USERPROFILE\Source\Repos\DES.Developer.Andlam" $importMode
+function Import-DotFiles ($importMode) {
+  python "$env:USERPROFILE\Source\Repos\dotfiles\import.py" $env:USERPROFILE "$env:USERPROFILE\Source\Repos\dotfiles" import
 }
 
 ### Helper Functions [HLPR] ###
@@ -89,7 +88,7 @@ function Import-Work-DotFiles ($importMode = $false) {
 # Coding [CDNG]
 
 function ca ($mode) {
-    Set-CodeAnalysisMode (Read-AnswerToBool $mode)
+  Set-CodeAnalysisMode (Read-AnswerToBool $mode)
 }
 
 function fmtjson_clip {
@@ -111,26 +110,26 @@ function gctp ($commitMessage) {
 }
 
 function gitBranchCleanup() {
-    $branches = ($(git branch) | Where-Object { -not $_.StartsWith("*") }).Trim()
+  $branches = ($(git branch) | Where-Object { -not $_.StartsWith("*") }).Trim()
 
-    $allBranches = ($(git branch --all) | Where-Object { -not $_.StartsWith("*") -and  -not $_.StartsWith("HEAD") -and $_.StartsWith("  remotes/origin/") }).Trim().Replace("remotes/origin/", "")
-    # Might get expensive in future if lots of branch
-    $delete = $branches | Where-Object { $allBranches -notcontains $_ }
-    
-    Write-Host "Branches to delete"
-    $delete | ForEach-Object { Write-Host $_ }
+  $allBranches = ($(git branch --all) | Where-Object { -not $_.StartsWith("*") -and  -not $_.StartsWith("HEAD") -and $_.StartsWith("  remotes/origin/") }).Trim().Replace("remotes/origin/", "")
+  # Might get expensive in future if lots of branch
+  $delete = $branches | Where-Object { $allBranches -notcontains $_ }
+  
+  Write-Host "Branches to delete"
+  $delete | ForEach-Object { Write-Host $_ }
 
-    #TODO refactor into method
-    $resp = Read-Host "Proceed?"
-    if ($resp -cin @("t", "true", "y", "yes"))
-    {
-        $delete | ForEach-Object { git branch -D $_ }
-    }
+  #TODO refactor into method
+  $resp = Read-Host "Proceed?"
+  if ($resp -cin @("t", "true", "y", "yes"))
+  {
+    $delete | ForEach-Object { git branch -D $_ }
+  }
 }
 
 
 
 # Import work specific code
 if (Test-Path "$env:USERPROFILE\Documents\WindowsPowerShell\WorkSpecific\Work_Powershell_Profile.ps1") {
-    . "$env:USERPROFILE\Documents\WindowsPowerShell\WorkSpecific\Work_Powershell_Profile.ps1"
+  . "$env:USERPROFILE\Documents\WindowsPowerShell\WorkSpecific\Work_Powershell_Profile.ps1"
 }
