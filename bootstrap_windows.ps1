@@ -7,6 +7,10 @@ New-Item -ItemType Directory -Path $workingDir -Force > $null
 Set-Location -Path $workingDir
 
 $ErrorActionPreference = "Stop"
+
+# Seems that some websites use newer versions and powershell defaults are not good enough.
+[Net.ServicePointManager]::SecurityProtocol = "tls12, tls11, tls"
+
 function RefreshPath {
     $env:Path =
         [System.Environment]::GetEnvironmentVariable("Path","Machine") +
@@ -48,7 +52,7 @@ UseCredentialManager=Enabled
 EnableSymlinks=Disabled
 "@
     $inf | Out-File -FilePath ".\git_settings.inf" -Encoding utf8 -Force
-    $releasesList = Invoke-RestMethod "https://api.github.com/repos/git-for-windows/git/releases"
+    $releasesList = Invoke-RestMethod -Method Get "https://api.github.com/repos/git-for-windows/git/releases"
     $release = $releasesList | Sort-Object -Property published_at -Descending | Where-Object { $_.name -match "Git For Windows" } | Select-Object -First 1
     $releaseExeAsset = $release.assets | Where-Object { $_.name -match "Git-.*-64-bit.exe" }
     $releaseExeUrl = $releaseExeAsset.browser_download_url
@@ -112,11 +116,41 @@ function GetDotfileRepo {
     python "$repoDir\import.py" $env:USERPROFILE $repoDir import
 }
 
-GetFirefox
-GetGitForWindows
-GetPython
+function GetAutoHotKey {
+    Write-Output "GetAutoHotKey"
+    Invoke-RestMethod -Method get "https://www.autohotkey.com/download/ahk-install.exe" -OutFile .\ahk-install.exe
+    .\ahk-install.exe /S
+    WaitForAllOf "ahk-install"
+}
+
+function GetConEmu {
+    Write-Output "GetConEmu"
+    #TODO same logic for pulling latest from github
+    # same logic for command line switches too
+    # https://docs.microsoft.com/en-us/windows/desktop/msi/standard-installer-command-line-options
+    #.\ConEmuSetup.190331.exe "/p:x64,adm" /qr
+}
+
+if (-not (Test-Path "C:\Program Files\*Firefox*")) {
+    GetFirefox
+}
+if (-not (Test-Path "C:\Program Files\*Git*")) {
+    GetGitForWindows
+}
+if (-not (Test-Path "C:\Program Files\*Python*")) {
+    GetPython
+}
+if (-not (Test-Path "C:\Program Files\*AutoHotkey*")) {
+    GetAutoHotKey
+}
+if (-not (Test-Path "C:\Program Files\*ConEmu*")) {
+    GetConEmu
+}
+
 RefreshPath
-GetDotfileRepo
+if (-not (Test-Path "$env:USERPROFILE\Source\Repos\dotfiles")) {
+    GetDotfileRepo
+}
 <#
 #>
 Write-Output "Reboot the shell to continue...."

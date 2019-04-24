@@ -61,7 +61,7 @@ function cbp {
   Get-PSBreakpoint | Remove-PSBreakpoint
 }
 
-function dotrepo { Set-Location "C:\Users\andlam\Source\Repos\dotfiles" }
+function dotrepo { Set-Location "$env:USERPROFILE\Source\Repos\dotfiles" }
 
 function erc {
   gvim "$env:USERPROFILE\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
