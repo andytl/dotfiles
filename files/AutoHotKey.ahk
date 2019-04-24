@@ -41,3 +41,12 @@ Alt & 9::ShiftAltTab
 ;Ctrl & 9::SendInput {Ctrl down}{Shift down}{Tab}{Shift up}{Ctrl up}
 
 Alt & -::AltTabMenuDismiss
+
+!Numpad0::SendInput {Media_Play_Pause}
+!NumpadIns::SendInput {Media_Play_Pause}
+!Numpad4::SendInput {Media_Prev}
+!NumpadLeft::SendInput {Media_Prev}
+!Numpad6::SendInput {Media_Next}
+!NumpadRight::SendInput {Media_Next}
+!NumpadAdd::SoundSet +5
+!NumpadSub::SoundSet -5
