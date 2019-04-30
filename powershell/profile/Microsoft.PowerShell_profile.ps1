@@ -23,6 +23,12 @@ Import-Module PSReadLine
 
 Import-Module "Personal\Common" -Force 
 
+# Generalize to add arbritrary folders to path?
+$UserBinPath = "$env:USERPROFILE\bin"
+if (-not ($env:PATH -match "(^|;)$(Get-EscapedRegex $UserBinPath)(^|;)") -and (Test-Path $UserBinPath)) {
+  $env:PATH += ";$UserBinPath"
+}
+
 # Setup PSReadLine
 Set-PSReadlineKeyHandler -Key Tab -Function Complete
 Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
