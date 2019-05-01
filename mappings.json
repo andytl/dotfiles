@@ -40,6 +40,16 @@
         "Platforms": ["Mac", "Linux"]
     },
     {
+        "Destination": "youtube-dl.conf",
+        "Source": "files/youtube-dl.conf",
+        "Platforms": ["Windows"]
+    },
+    {
+        "Destination": ".config/youtube-dl.conf",
+        "Source": "files/youtube-dl.conf",
+        "Platforms": ["Mac", "Linux"]
+    },
+    {
         "Destination": ".config/Code/User/settings.json",
         "Source": "files/vscode/settings.json",
         "Platforms": ["Linux"]
