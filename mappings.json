@@ -50,7 +50,7 @@
         "Platforms": ["Mac", "Linux"]
     },
     {
-        "Destination": ".config/Code/User/settings.json",
+        "Destination": ".config/Code - OSS/User/settings.json",
         "Source": "files/vscode/settings.json",
         "Platforms": ["Linux"]
     },
