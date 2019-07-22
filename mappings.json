@@ -5,6 +5,11 @@
         "Platforms": ["Windows", "Mac", "Linux"]
     },
     {
+        "Destination": "scripts",
+        "Source": "scripts",
+        "Platforms": ["Windows", "Mac", "Linux"]
+    },
+    {
         "Destination": ".gitconfig",
         "Source": "files/.gitconfig",
         "Platforms": ["Windows", "Mac", "Linux"]
