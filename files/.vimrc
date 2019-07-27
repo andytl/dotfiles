@@ -52,7 +52,7 @@ Plugin 'gmarik/vundle'
       \ }
 " Plugin 'vim-scripts/taglist.vim'
 "   nnoremap <silent> <F8> :TlistToggle<CR>
-  Plugin 'szw/vim-ctrlspace'
+"  Plugin 'szw/vim-ctrlspace'
   Plugin 'scrooloose/syntastic'
     "map <C-b> :SyntasticCheck<CR>
     "map <C-h> :SyntasticReset<CR>
