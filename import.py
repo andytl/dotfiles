@@ -6,6 +6,8 @@ import shutil
 from pathlib import Path
 
 EXPECTED_ARGS = 3
+CHMOD_EXTENSIONS = [".sh", ".py"]
+platform = None
 
 def usage(errorMsg):
     print("Usage: import.py <homedir> <dotfilerepodir> <import|backup>")
@@ -25,6 +27,7 @@ def getPlatform():
     return platform
 
 def readConfigFile(repoDir):
+    global platform
     platform = getPlatform()
     with Path(repoDir, "mappings.json").open() as json_file:
         mapping = json.load(json_file)
@@ -43,6 +46,8 @@ def recursiveCopyNode(srcLoc, dstLoc):
     else:
         print("File: {0} -> {1}".format(srcLoc, dstLoc))
         shutil.copy(str(srcLoc), str(dstLoc))
+        if dstLoc.suffix in CHMOD_EXTENSIONS and platform != "Windows":
+            dstLoc.chmod(0o740)
 
 def processMapping(homeDir, repoDir, mode, mapping):
     repoLoc = Path(repoDir, mapping["Source"])

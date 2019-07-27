@@ -52,14 +52,17 @@ run_backup() {
 }
 run_rclone_backup() {
     # this needs rclone
-    rclone sync ~/Sync crypt_google_drive:RcloneBackup/SyncEncrypted
-    rclone sync ~/Sync crypt_onedrive:RcloneBackup/SyncEncrypted
-    rclone sync ~/Sync crypt_dropbox:RcloneBackup/SyncEncrypted
+    # Since the rclone config already specifies the directory for encrypted backup,
+    # this just needs to reference the "root" folder on the remote
+    rclone sync ~/Sync crypt_google_drive:
+    rclone sync ~/Sync crypt_onedrive:
+    rclone sync ~/Sync crypt_dropbox:
 }
 restore_rclone_backup() {
-    rclone sync crypt_google_drive:RcloneBackup/SyncEncrypted ~/Sync
-    rclone sync crypt_onedrive:RcloneBackup/SyncEncrypted ~/Sync
-    rclone sync crypt_dropbox:RcloneBackup/SyncEncrypted ~/Sync
+    echo "Pick a source before running"
+    #rclone sync crypt_google_drive: ~/Sync
+    #rclone sync crypt_onedrive: ~/Sync
+    #rclone sync crypt_dropbox: ~/Sync
 }
 
 
