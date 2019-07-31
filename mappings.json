@@ -5,6 +5,11 @@
         "Platforms": ["Windows", "Mac", "Linux"]
     },
     {
+        "Destination": "scripts",
+        "Source": "scripts",
+        "Platforms": ["Windows", "Mac", "Linux"]
+    },
+    {
         "Destination": ".gitconfig",
         "Source": "files/.gitconfig",
         "Platforms": ["Windows", "Mac", "Linux"]
@@ -50,7 +55,7 @@
         "Platforms": ["Mac", "Linux"]
     },
     {
-        "Destination": ".config/Code/User/settings.json",
+        "Destination": ".config/Code - OSS/User/settings.json",
         "Source": "files/vscode/settings.json",
         "Platforms": ["Linux"]
     },
