@@ -155,3 +155,26 @@ function Start-Watch($from, $to, $debugLogFile = $null) {
         }
     } -ArgumentList $from, $to, $debugLogFile
 }
+
+function Set-EnvironmentVariable {
+    param (
+        [string] $variableName,
+        [string] $variableValue
+    )
+    [System.Environment]::SetEnvironmentVariable(
+        $variableName,
+        $variableValue,
+        [System.EnvironmentVariableTarget]::User
+    )
+}
+
+function Clear-EnvironmentVariable {
+    param (
+        [string] $variableName
+    )
+    [System.Environment]::SetEnvironmentVariable(
+        $variableName,
+        $null,
+        [System.EnvironmentVariableTarget]::User
+    )
+}

@@ -22,5 +22,6 @@
     "cSpell.maxDuplicateProblems": 100,
     "cSpell.maxNumberOfProblems": 5000,
     "editor.fontFamily": "Inconsolata, Consolas, Menlo, Monaco, 'Courier New', monospace",
-    "explorer.confirmDelete": false
+    "explorer.confirmDelete": false,
+    "C_Cpp.dimInactiveRegions": false
 }

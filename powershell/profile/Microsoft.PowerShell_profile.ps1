@@ -89,6 +89,18 @@ function Import-DotFiles ($importMode) {
   python "$env:USERPROFILE\Source\Repos\dotfiles\import.py" $env:USERPROFILE "$env:USERPROFILE\Source\Repos\dotfiles" import
 }
 
+function Set-TlsLog ($enabled) {
+  # Enable Secret logging for TLS connections
+  # https://jimshaver.net/2015/02/11/decrypting-tls-browser-traffic-with-wireshark-the-easy-way/
+  $varName = "SSLKEYLOGFILE"
+  $varValue = "$env:USERPROFILE\Documents\sslkeylog.log"
+  if ($enabled) {
+    Set-EnvironmentVariable $varName $varValue
+  } else {
+    Clear-EnvironmentVariable $varName
+  }
+}
+
 ### Helper Functions [HLPR] ###
 
 # Coding [CDNG]
