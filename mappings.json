@@ -25,6 +25,11 @@
         "Platforms": ["Mac", "Linux"]
     },
     {
+        "Destination": ".bashrc",
+        "Source": "files/.bashrc",
+        "Platforms": ["Mac", "Linux"]
+    },
+    {
         "Destination": ".bash_profile",
         "Source": "files/.bash_profile",
         "Platforms": ["Mac", "Linux"]
