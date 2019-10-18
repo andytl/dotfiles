@@ -13,8 +13,8 @@ if (-not $env:PSModulePath.Contains($UserPSModulePath)) {
   $env:PSModulePath += ";$UserPSModulePath"
 }
 $UserPythonPath = "$env:USERPROFILE\python"
-if (-not $env:PSModulePath.Contains($UserPythonPath)) {
-  $env:PSModulePath += ";$UserPythonPath"
+if (-not $env:Path.Contains($UserPythonPath)) {
+  $env:Path += ";$UserPythonPath"
 }
 
 # Imports=
@@ -128,6 +128,7 @@ function gctp ($commitMessage) {
 }
 
 function gitBranchCleanup() {
+  git fetch origin --prune
   $branches = ($(git branch) | Where-Object { -not $_.StartsWith("*") }).Trim()
 
   $allBranches = ($(git branch --all) | Where-Object { -not $_.StartsWith("*") -and  -not $_.StartsWith("HEAD") -and $_.StartsWith("  remotes/origin/") }).Trim().Replace("remotes/origin/", "")
