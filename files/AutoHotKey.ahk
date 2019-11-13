@@ -8,19 +8,19 @@
 
 #Include *i %A_MyDocuments%\AutoHotKeyU64_WorkSpecific.ahk
 
-#h::
+#j::
   Run notepad "%A_MyDocuments%\AutoHotKeyU64.ahk" ; "C:\Program Files (x86)\Vim\vim74\gvim.exe"
   Sleep 5000
   WinActivate, AutoHotKeyU64.ahk - Notepad
 return
 
-#y::
+#u::
   Run notepad "%A_MyDocuments%\AutoHotKeyU64_WorkSpecific.ahk" ; "C:\Program Files (x86)\Vim\vim74\gvim.exe"
   Sleep 5000
   WinActivate, AutoHotKeyU64
 return
 
-#j::
+#k::
   Reload
   Sleep 2000 ; If successful, the reload will close this instance during the Sleep, so the line below will never be reached.
   MsgBox, 4,, The script could not be reloaded. Would you like to open it for editing?
