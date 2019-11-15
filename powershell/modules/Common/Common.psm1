@@ -17,6 +17,13 @@ function Get-EscapedRegex {
     [System.Text.RegularExpressions.Regex]::Escape($stringForRegex)
 }
 
+function Get-WindowsPath {
+    param (
+        $path
+    )
+    $path -replace "/","\"
+}
+
 # Takes a range list e.g. "1-3,4,6" and enumerates the range into the
 # pipeline. For that input, output is 1,2,3,4,6
 function Get-RangeList {
@@ -33,7 +40,7 @@ function Get-RangeList {
     }
 }
 
-# Takes an array and the output of Enumerate-RangeList and filters
+# Takes an array and the output of Get-RangeList and filters
 # The array to the given elements
 function Get-FilterArray {
     param (
@@ -52,6 +59,50 @@ function Get-FilterArray {
         $i++
     }
 }
+
+
+function Get-CredentialObjectForCreds {
+    param (
+        $parts # ["username", "password"]
+    )
+      
+    $secpwd = ConvertTo-SecureString $parts[1] -AsPlainText -Force
+    New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $parts[0], $secpwd
+}
+
+# Shortcuts for invoke-command
+function Invoke-OnVM {
+    param (
+        $vmName,
+        [PSCredential]$cred,
+        $cmd,
+        $argList = $null
+    )
+    if ($argList) {
+        Invoke-Command -VMName $vmName -Credential $cred -ScriptBlock $cmd -ArgumentList $argList
+    } else {
+        Invoke-Command -VMName $vmName -Credential $cred -ScriptBlock $cmd
+    }
+}
+
+function Invoke-OnVMAsJob {
+    param (
+        $vmName,
+        [PSCredential]$cred,
+        $cmd,
+        $arglist = $null
+    )
+    if ($arglist) {
+        Invoke-Command -VMName $vmName -Credential $cred -ScriptBlock $cmd -ArgumentList $arglist -AsJob
+    } else {
+        Invoke-Command -VMName $vmName -Credential $cred -ScriptBlock $cmd -AsJob
+    }
+}
+
+
+
+
+
 
 # Coding and build
 
