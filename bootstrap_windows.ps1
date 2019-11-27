@@ -1,3 +1,4 @@
+[CmdletBinding()]
 <#
 Get the initial dependencies of the dotfiles repo before we begin. Of course, this is only needed on windows because 
 #>
@@ -45,8 +46,9 @@ function GitHubGetLatestRelease {
         $nameRegex,
         $assetRegex
     )
-
-    $releasesList = Invoke-RestMethod -Method Get "https://api.github.com/repos/$project/releases"
+    $url = "https://api.github.com/repos/$project/releases"
+    Write-Output $url
+    $releasesList = Invoke-RestMethod -Method Get $url
     $release = $releasesList | Sort-Object -Property published_at -Descending | Where-Object { $_.name -match $nameRegex } | Select-Object -First 1
     $releaseExeAsset = $release.assets | Where-Object { $_.name -match "$assetRegex" }
     if (-not $releaseExeAsset) {
@@ -106,7 +108,7 @@ UseCredentialManager=Enabled
 EnableSymlinks=Disabled
 "@
     $inf | Out-File -FilePath ".\git_settings.inf" -Encoding utf8 -Force
-    $release = GitHubGetLatestRelease "git/git-for-windows" "Git For Windows" "Git-.*-64-bit\.exe"
+    $release = GitHubGetLatestRelease "git-for-windows/git" "Git For Windows" "Git-.*-64-bit\.exe"
     $releaseExePath = ".\$($release.Name)"
     TryDownload $release.Url $releaseExePath
 
@@ -129,9 +131,9 @@ function GetPython {
     Write-Output "GetPython"
     #TODO autodetect version
     $ver = "3.7.2"
-    $exeUrl = "https://www.python.org/ftp/python/$ver/"
     $exeName = "python-$ver-amd64.exe"
     $exePath = ".\$exeName"
+    $exeUrl = "https://www.python.org/ftp/python/$ver/$exeName"
     TryDownload $exeUrl $exePath
 
     & $exePath /passive /log "python_install.log" InstallAllUsers=1 PrependPath=1 CompileAll=1 # MSIExec returns immediately so need to wait
