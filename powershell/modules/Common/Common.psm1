@@ -24,6 +24,24 @@ function Get-WindowsPath {
     $path -replace "/","\"
 }
 
+################################################################################
+# User Interaction Helpers
+#
+# These function prompt user for data with retry logic.
+################################################################################
+
+function Get-RunningVM {
+    while ($true) {
+        $vm = Get-VM | Where-Object { $_.State -eq "Running" } | Select-Object -First 1
+        if ($vm) {
+            break
+        }
+        Write-Error "Failed to locate running VM"
+        Read-Host -Prompt "press enter to find VM..." > $null
+    }
+    $vm
+}
+
 # Takes a range list e.g. "1-3,4,6" and enumerates the range into the
 # pipeline. For that input, output is 1,2,3,4,6
 function Get-RangeList {

@@ -81,6 +81,11 @@ function rc {
   . "$env:USERPROFILE\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
 }
 
+function cdl {
+  $f = Get-ChildItem .\ | Sort-Object -Property CreationTime -Descending | Select-Object -First 1
+  Set-Location $f
+}
+
 function Backup-DotFiles () {
   python "$env:USERPROFILE\Source\Repos\dotfiles\import.py" $env:USERPROFILE "$env:USERPROFILE\Source\Repos\dotfiles" backup
 }
@@ -118,7 +123,6 @@ function gbctp ($branchName, $commitMessage) {
   git add .
   git commit -m $commitMessage
   git push origin
-  git checkout master
 }
 
 function gctp ($commitMessage) {
