@@ -33,7 +33,7 @@ def readConfigFile(repoDir):
         mapping = json.load(json_file)
     return [x for x in mapping if platform in x["Platforms"]]
 
-def recursiveCopyNode(srcLoc, dstLoc):
+def recursiveCopyNode(srcLoc, dstLoc, mode):
     #print("recursiveCopyNode({0},{1})".format(srcLoc, dstLoc))
     if not srcLoc.exists():
         print("{0} does not exist".format(srcLoc))
@@ -42,11 +42,11 @@ def recursiveCopyNode(srcLoc, dstLoc):
         dstLoc.mkdir(parents=True, exist_ok=True)
         for node in srcLoc.iterdir():
             fileName = node.relative_to(srcLoc);
-            recursiveCopyNode(node, Path(dstLoc, fileName))
+            recursiveCopyNode(node, Path(dstLoc, fileName), mode)
     else:
         print("File: {0} -> {1}".format(srcLoc, dstLoc))
         shutil.copy(str(srcLoc), str(dstLoc))
-        if dstLoc.suffix in CHMOD_EXTENSIONS and platform != "Windows":
+        if dstLoc.suffix in CHMOD_EXTENSIONS and platform != "Windows" and mode == "import":
             dstLoc.chmod(0o740)
 
 def processMapping(homeDir, repoDir, mode, mapping):
@@ -59,7 +59,7 @@ def processMapping(homeDir, repoDir, mode, mapping):
         srcLoc = homeLoc
         dstLoc = repoLoc
     dstLoc.parent.mkdir(parents=True, exist_ok=True)
-    recursiveCopyNode(srcLoc, dstLoc)
+    recursiveCopyNode(srcLoc, dstLoc, mode)
 
 
 def importMain():
