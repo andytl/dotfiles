@@ -9,15 +9,15 @@
 #Include *i %A_MyDocuments%\AutoHotKeyU64_WorkSpecific.ahk
 
 #j::
-  Run notepad "%A_MyDocuments%\AutoHotKeyU64.ahk" ; "C:\Program Files (x86)\Vim\vim74\gvim.exe"
+  Run notepad "%A_MyDocuments%\AutoHotKey.ahk" ; "C:\Program Files (x86)\Vim\vim74\gvim.exe"
   Sleep 5000
-  WinActivate, AutoHotKeyU64.ahk - Notepad
+  WinActivate, AutoHotKey.ahk - Notepad
 return
 
 #u::
   Run notepad "%A_MyDocuments%\AutoHotKeyU64_WorkSpecific.ahk" ; "C:\Program Files (x86)\Vim\vim74\gvim.exe"
   Sleep 5000
-  WinActivate, AutoHotKeyU64
+  WinActivate, AutoHotKey
 return
 
 #k::
@@ -41,6 +41,9 @@ Alt & 9::ShiftAltTab
 ;Ctrl & 9::SendInput {Ctrl down}{Shift down}{Tab}{Shift up}{Ctrl up}
 
 Alt & -::AltTabMenuDismiss
+
+Alt & y::SendInput y{Enter}
+Alt & n::SendInput n{Enter}
 
 !Numpad0::SendInput {Media_Play_Pause}
 !NumpadIns::SendInput {Media_Play_Pause}
