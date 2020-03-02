@@ -1,6 +1,7 @@
 [core]
 	excludesfile = ~/.gitignore
 	autocrlf = false
+	filemode = false
 
 [alias]
 	lgr = log --graph --decorate=full --abbrev-commit --date=relative

@@ -12,22 +12,18 @@ $UserPSModulePath = "$env:USERPROFILE\Documents\WindowsPowerShell\Modules"
 if (-not $env:PSModulePath.Contains($UserPSModulePath)) {
   $env:PSModulePath += ";$UserPSModulePath"
 }
-$UserPythonPath = "$env:USERPROFILE\python"
-if (-not $env:Path.Contains($UserPythonPath)) {
-  $env:Path += ";$UserPythonPath"
-}
 
 # Imports=
 Import-Module posh-git
 Import-Module PSReadLine
 
 Import-Module "Personal\Common" -Force 
+Import-Module "Personal\EnvironmentConfiguration" -Force
 
-# Generalize to add arbritrary folders to path?
-$UserBinPath = "$env:USERPROFILE\bin"
-if (-not ($env:PATH -match "(^|;)$(Get-EscapedRegex $UserBinPath)(^|;)") -and (Test-Path $UserBinPath)) {
-  $env:PATH += ";$UserBinPath"
-}
+Add-PathIfPresent "$env:USERPROFILE\Documents\WindowsPowerShell\Scripts"
+Add-PathIfPresent "$env:USERPROFILE\bin"
+Add-SubdirectoryPathIfPresent "$env:USERPROFILE\bin"
+Add-PathIfPresent "$env:USERPROFILE\python"
 
 # Setup PSReadLine
 Set-PSReadlineKeyHandler -Key Tab -Function Complete

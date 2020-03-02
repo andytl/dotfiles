@@ -1,6 +1,45 @@
 
 Set-StrictMode -Version Latest
 
+# Windows Commands
+function Start-CommandTxtAsAdmin {
+    param (
+        $commandTxt
+    )
+    
+    if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+        Start-Process powershell -Verb runAs -ArgumentList $commandTxt -Wait
+    }
+}
+
+function Set-EnvironmentVariable {
+    param (
+        [string] $variableName,
+        [string] $variableValue
+    )
+    [System.Environment]::SetEnvironmentVariable(
+        $variableName,
+        $variableValue,
+        [System.EnvironmentVariableTarget]::User
+    )
+}
+
+function Clear-EnvironmentVariable {
+    param (
+        [string] $variableName
+    )
+    [System.Environment]::SetEnvironmentVariable(
+        $variableName,
+        $null,
+        [System.EnvironmentVariableTarget]::User
+    )
+}
+
+function Get-MachineIpAddress {
+    (Get-NetIPAddress | Where-Object { $_.AddressFamily -eq "IPV4" -and $_.InterfaceAlias -eq "Ethernet"}).IPAddress
+}
+
+
 # Text Manipulation
 
 function Read-AnswerToBool {
@@ -223,27 +262,4 @@ function Start-Watch($from, $to, $debugLogFile = $null) {
             LogString "Unregister events for from $from to $to"
         }
     } -ArgumentList $from, $to, $debugLogFile
-}
-
-function Set-EnvironmentVariable {
-    param (
-        [string] $variableName,
-        [string] $variableValue
-    )
-    [System.Environment]::SetEnvironmentVariable(
-        $variableName,
-        $variableValue,
-        [System.EnvironmentVariableTarget]::User
-    )
-}
-
-function Clear-EnvironmentVariable {
-    param (
-        [string] $variableName
-    )
-    [System.Environment]::SetEnvironmentVariable(
-        $variableName,
-        $null,
-        [System.EnvironmentVariableTarget]::User
-    )
 }
