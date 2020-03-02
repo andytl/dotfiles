@@ -1,5 +1,8 @@
 #SingleInstance force
 
+; Ctrl would result in WinKey+Ctrl mask conflicting with Windows Speech Recognition.
+#MenuMaskKey vk07
+
 ; Common Key for sendinput
 ; !{key} -> Alt + {key}
 ; ^{key} -> Ctrl + {key}
