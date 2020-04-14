@@ -30,7 +30,8 @@ return
   IfMsgBox, Yes, Edit
 return
 
-#t::Run "C:\Program Files\ConEmu\ConEmu64.exe"
+#t::Run,C:\Program Files\ConEmu\ConEmu64.exe -run {Shells::PowerShell}
+#+t::Run,C:\Program Files\ConEmu\ConEmu64.exe -run {Shells::PowerShell (Admin)}
 #p::SendInput . C:\Users\andlam\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1{Enter}
 
 ; Remap the windows movement to only require ctrl and not the winkey

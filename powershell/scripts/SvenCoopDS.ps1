@@ -16,6 +16,7 @@ $downloadSvrJs = Join-Path $downloadSvrDir "server.js"
 $configPath = "$serverDir\svencoop\server.cfg"
 $mapConfigPath = "$serverDir\svencoop\mapvote.cfg"
 $mapCyclePath = "$serverDir\svencoop\mapcycle.txt"
+$ipaddr = Get-MachineIpAddress
 
 function BackupFile {
     param($file)
@@ -71,7 +72,6 @@ server.listen(8080, () => {
 
 ((Get-Content -Path $configPath -Raw) -replace "sv_downloadurl.*","sv_downloadurl `"http://$ipaddr`:8080/svencoopstatic`"") |
     Set-Content -Path $configPath
-$ipaddr = Get-MachineIpAddress
 
 <#
 http://www.svencoop.com/manual/server-config.html
