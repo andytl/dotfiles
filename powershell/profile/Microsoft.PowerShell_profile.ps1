@@ -29,7 +29,7 @@ Add-PathIfPresent "$env:USERPROFILE\python"
 Set-PSReadlineKeyHandler -Key Tab -Function Complete
 Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
-Set-PSReadlineKeyHandler -Chord Ctrl+D -Function DeleteCharOrExit
+Set-PSReadlineKeyHandler -Chord Ctrl+d -Function DeleteCharOrExit
 
 # Setup Profile related items and aliases 
 # Remove this alias, want to use the real deal.
