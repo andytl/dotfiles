@@ -21,7 +21,11 @@ else
     export PS1="\[\e[00;32m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;31m\]\h\[\e[0m\]\[\e[00;37m\] \[\e[0m\]\[\e[00;36m\]\W\[\e[0m\]\[\e[00;37m\]\[\e[0m\]\[\e[00;33m\]\[\e[0m\]\[\e[00;37m\] \n$\[\e[0m\] "
 fi
 
-eval "$(rbenv init -)"
+if [[ -n "$(which rbenv)" ]]
+then
+    # Used when ruby is installed
+    eval "$(rbenv init -)"
+fi
 
 if [[ -f ~/.nvm ]]; then
     export NVM_DIR="/Users/andytl/.nvm"
@@ -74,6 +78,7 @@ alias g=git
 alias todo='fgrep -r -e "TODO" '
 alias vi="vim"
 alias evimrc="vim ~/.vimrc"
+alias dotrepo="cd ~/git/dotfiles"
 alias import_dotfiles="python3 ~/git/dotfiles/import.py ~ ~/git/dotfiles import && source ~/.bash_profile"
 alias backup_dotfiles="python3 ~/git/dotfiles/import.py ~ ~/git/dotfiles backup"
 
