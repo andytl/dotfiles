@@ -23,5 +23,8 @@
     "cSpell.maxNumberOfProblems": 5000,
     "editor.fontFamily": "Inconsolata, Consolas, Menlo, Monaco, 'Courier New', monospace",
     "explorer.confirmDelete": false,
-    "C_Cpp.dimInactiveRegions": false
+    "C_Cpp.dimInactiveRegions": false,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "python.jediEnabled": false
 }

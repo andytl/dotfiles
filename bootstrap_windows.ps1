@@ -263,12 +263,17 @@ if (-not (Test-Path "C:\Program Files\Notepad++")) {
     GetNotepadPlusPlus
 }
 
-
-
-
 if (-not (Test-Path "$env:USERPROFILE\Source\Repos\dotfiles")) {
     RefreshPath
     GetDotfileRepo
 }
+
+# Apply custom registry settings
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Search /v BingSearchEnabled /t REG_DWORD /d 0 /f  
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Search /v AllowSearchToUseLocation /t REG_DWORD /d 0 /f
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Search /v CortanaConsent /t REG_DWORD /d 0 /f
+
+# Disable Aero Peek
+REG ADD "HKCU\SOFTWARE\Microsoft\Windows\DWM" /V EnableAeroPeek /T REG_DWORD /D 0 /F
 
 Write-Output "Reboot the shell to continue...."
