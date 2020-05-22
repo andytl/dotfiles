@@ -129,6 +129,9 @@ function Get-CredentialObjectForCreds {
 
 # Shortcuts for invoke-command
 function Invoke-OnVM {
+    # Adding Cmdlet to support erroraction. Invoke-Command sometimes throws non-terminating errors so
+    # this function must support ErrorAction=Stop to enable catching those.
+    [CmdletBinding()]
     param (
         $vmName,
         [PSCredential]$cred,
@@ -143,6 +146,7 @@ function Invoke-OnVM {
 }
 
 function Invoke-OnVMAsJob {
+    [CmdletBinding()]
     param (
         $vmName,
         [PSCredential]$cred,
