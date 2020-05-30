@@ -117,6 +117,23 @@ function Get-FilterArray {
     }
 }
 
+function Get-PlaintextFromSecureString {
+    param (
+        [SecureString] $password
+    )
+
+    $unmanagedPlaintextString = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($password)
+    [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($unmanagedPlaintextString) # emits output
+    [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($unmanagedPlaintextString) 
+}
+
+function Get-CredentialObjectForCurrentUser {
+    param (
+        [SecureString] $Password
+    )
+
+    New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList @($(whoami.exe), $Password)
+}
 
 function Get-CredentialObjectForCreds {
     param (

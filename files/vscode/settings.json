@@ -26,5 +26,7 @@
     "C_Cpp.dimInactiveRegions": false,
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "python.jediEnabled": false
+    "python.jediEnabled": false,
+    "C_Cpp.default.enableConfigurationSquiggles": false,
+    "terminal.integrated.fontSize": 16
 }
