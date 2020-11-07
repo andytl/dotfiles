@@ -36,7 +36,7 @@ function Clear-EnvironmentVariable {
 }
 
 function Get-MachineIpAddress {
-    (Get-NetIPAddress | Where-Object { $_.AddressFamily -eq "IPV4" -and $_.InterfaceAlias -eq "Ethernet"}).IPAddress
+    (Get-NetIPAddress | Where-Object { $_.AddressFamily -eq "IPV4" -and $_.InterfaceAlias -match "\(Ethernet\)"}).IPAddress
 }
 
 

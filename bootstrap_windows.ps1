@@ -263,6 +263,10 @@ if (-not (Test-Path "C:\Program Files\Notepad++")) {
     GetNotepadPlusPlus
 }
 
+if (-not (Test-Path "C:\Program Files\7-Zip")) {
+    Get7z
+}
+
 if (-not (Test-Path "$env:USERPROFILE\Source\Repos\dotfiles")) {
     RefreshPath
     GetDotfileRepo
