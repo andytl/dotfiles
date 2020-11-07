@@ -69,6 +69,27 @@ function Get-WindowsPath {
 # These function prompt user for data with retry logic.
 ################################################################################
 
+function Read-UserChoiceFromArray {
+    param(
+        $choices,
+        [ScriptBlock] $choiceSelectFn
+    )
+
+    Write-Host "Select an entry:"
+    $i = 1
+    foreach ($choice in $choices) {
+        if ($choiceSelectFn) {
+            $choiceDisplayText = & $choiceSelectFn $choice
+            Write-Host "[$i] $choiceDisplayText"
+        } else {
+            Write-Host "[$i] - $choice"
+        }
+        $i++
+    }
+    $choiceIndex = [int] (Read-Host -Prompt "Enter choice> ")
+    $choices[$choiceIndex - 1];
+}
+
 function Get-RunningVM {
     while ($true) {
         $vm = Get-VM | Where-Object { $_.State -eq "Running" } | Select-Object -First 1
