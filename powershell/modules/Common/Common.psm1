@@ -1,6 +1,35 @@
 
 Set-StrictMode -Version Latest
 
+function Start-ProcessWithRedirect {
+    param (
+        $FilePath,
+        $ArgumentList
+    )
+    $p = New-Object System.Diagnostics.Process
+    $p.StartInfo.FileName = $FilePath
+    #$p.StartInfo.RedirectStandardError = $true
+    $p.StartInfo.RedirectStandardOutput = $true
+    $p.StartInfo.UseShellExecute = $false
+    $p.StartInfo.Arguments = $ArgumentList
+    $p.StartInfo.WindowStyle = "Hidden"
+    $p.Start() > $null
+    # TODO, redirect to memorystream rather than single read for deadlock resistance with both stdout + stderr
+    $stdout =  $p.StandardOutput.ReadToEnd()
+    # Maybe can also deadlock if stderr fills up while trying to read stdout?
+    #    stderr = $p.StandardError.ReadToEnd()
+
+    # Can deadlock if wait happens before reading all of redirected streams
+    # child writes to stream and blocks because it is full.
+    $p.WaitForExit()
+    [PSCustomObject]@{
+        command = $FilePath + $ArgumentList
+        stdout = $stdout
+        #stderr = $stderr
+        ExitCode = $p.ExitCode
+    }
+}
+
 # Windows Commands
 function Start-CommandTxtAsAdmin {
     param (
