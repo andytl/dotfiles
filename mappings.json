@@ -70,6 +70,11 @@
         "Platforms": ["Windows"]
     },
     {
+        "Destination": "AppData/Roaming/ConEmu.xml",
+        "Source": "files/ConEmu.xml",
+        "Platforms": ["Windows"]
+    },
+    {
         "Destination": "Library/Application Support/Code/User/settings.json",
         "Source": "files/vscode/settings.json",
         "Platforms": ["Mac"]

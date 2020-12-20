@@ -263,8 +263,19 @@ if (-not (Test-Path "C:\Program Files\Notepad++")) {
     GetNotepadPlusPlus
 }
 
+if (-not (Get-Module oh-my-posh))
+{
+    Install-Module oh-my-posh -Scope AllUsers -Force > $null
+}
+
 if (-not (Test-Path "C:\Program Files\7-Zip")) {
     Get7z
+}
+
+if (-not (Get-Command choco -ErrorAction SilentlyContinue)) {
+    # https://chocolatey.org/install#individual
+    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 }
 
 if (-not (Test-Path "$env:USERPROFILE\Source\Repos\dotfiles")) {
