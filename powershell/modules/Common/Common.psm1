@@ -1,6 +1,7 @@
 
 Set-StrictMode -Version Latest
 
+# Note that powershell jobs are probably a better solution to this if the goal is to capture stdout from Write-Host.
 function Start-ProcessWithRedirect {
     param (
         $FilePath,
