@@ -33,6 +33,9 @@ return
 #t::Run,C:\Program Files\ConEmu\ConEmu64.exe -run {Shells::PowerShell}
 #+t::Run,C:\Program Files\ConEmu\ConEmu64.exe -run {Shells::PowerShell (Admin)}
 
+#s::Run, *RunAs "C:\Program Files (x86)\FileZilla Server\FileZilla Server.exe" /start
+#+s::Run, *RunAs "C:\Program Files (x86)\FileZilla Server\FileZilla Server.exe" /stop
+
 ; Remap the windows movement to only require ctrl and not the winkey
 ;#9::SendInput,{Ctrl down}{LWin down}{Left}{Ctrl up}{LWin up}
 ;#0::SendInput,{Ctrl down}{LWin down}{Right}{Ctrl up}{LWin up}

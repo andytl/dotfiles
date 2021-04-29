@@ -13,8 +13,10 @@ if (-not $env:PSModulePath.Contains($UserPSModulePath)) {
   $env:PSModulePath += ";$UserPSModulePath"
 }
 
-Import-Module posh-git
 Import-Module PSReadLine
+Import-Module posh-git
+Import-Module oh-my-posh
+Set-Theme Operator
 
 # Setup PSReadLine
 Set-PSReadlineKeyHandler -Key Tab -Function Complete

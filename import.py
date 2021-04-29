@@ -44,7 +44,7 @@ def recursiveCopyNode(srcLoc, dstLoc, mode):
             fileName = node.relative_to(srcLoc);
             recursiveCopyNode(node, Path(dstLoc, fileName), mode)
     else:
-        print("File: {0} -> {1}".format(srcLoc, dstLoc))
+        print(" v--< {0}\n +--> {1}\n".format(srcLoc, dstLoc))
         shutil.copy(str(srcLoc), str(dstLoc))
         if dstLoc.suffix in CHMOD_EXTENSIONS and platform != "Windows" and mode == "import":
             dstLoc.chmod(0o740)
