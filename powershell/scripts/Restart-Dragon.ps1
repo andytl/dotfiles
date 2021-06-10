@@ -4,6 +4,7 @@ Get-Process dragonbar | Stop-Process -force
 Get-Process dgnuiasvr* | Stop-Process -force
 Get-Process dgnuiasvr_x64 | Stop-Process -force
 Get-Process dgnria_emhost* | Stop-Process -force
+Get-Process dgnria_nmhost* | Stop-Process -force
 Get-Service DragonSvc | Stop-Service
 Get-Service DragonLoggerService | Stop-Service
 
