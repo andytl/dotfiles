@@ -16,7 +16,6 @@ if (-not $env:PSModulePath.Contains($UserPSModulePath)) {
 Import-Module PSReadLine
 Import-Module posh-git
 Import-Module oh-my-posh
-Set-Theme Operator
 
 # Setup PSReadLine
 Set-PSReadlineKeyHandler -Key Tab -Function Complete
@@ -75,7 +74,7 @@ function ewrc {
 }
 
 function rc {
-  . "$env:USERPROFILE\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
+  . "$env:USERPROFILE\Documents\WindowsPowerShell\profile.ps1"
 }
 
 function cdl {

@@ -283,6 +283,11 @@ if (-not (Test-Path "$env:USERPROFILE\Source\Repos\dotfiles")) {
     GetDotfileRepo
 }
 
+#TODO
+# https://jordanmalcolm.com/deploying-windows-10-fonts-at-scale/
+# Copy-Item "C:\CustomFont.ttf" "C:\Windows\Fonts"
+# New-ItemProperty -Name "Custom Font Name (TrueType)" -Path "HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Fonts" -PropertyType string -Value "CustomFont.ttf"
+
 # Apply custom registry settings
 reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Search /v BingSearchEnabled /t REG_DWORD /d 0 /f  
 reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Search /v AllowSearchToUseLocation /t REG_DWORD /d 0 /f
