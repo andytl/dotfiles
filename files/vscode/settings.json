@@ -1,41 +1,50 @@
 {
-    "workbench.colorTheme": "Monokai",
-    "telemetry.enableTelemetry": false,
+    /* Editor Settings */
     "breadcrumbs.enabled": true,
-    "window.zoomLevel": 0,
     "editor.accessibilitySupport": "off",
-    "editor.fontSize": 16,
     "editor.fontFamily": "Inconsolata, Consolas, Menlo, Monaco, 'Courier New', monospace",
-    "editor.minimap.enabled": false,
+    "editor.fontSize": 16,
     "editor.glyphMargin": false,
+    "editor.minimap.enabled": false,
     "editor.renderControlCharacters": true,
     "editor.renderWhitespace": "all",
     "editor.suggestSelection": "first",
     "explorer.confirmDelete": false,
-    "cSpell.language": "en,en-US",
-    "cSpell.checkLimit": 10000,
-    "cSpell.maxDuplicateProblems": 100,
-    "cSpell.maxNumberOfProblems": 5000,
-    "C_Cpp.dimInactiveRegions": false,
-    "C_Cpp.configurationWarnings": "Disabled",
-    "C_Cpp.default.enableConfigurationSquiggles": false,
-    "git.enableSmartCommit": true,
-    "gitlens.currentLine.enabled": false,
-    "gitlens.codeLens.enabled": false,
-    "gitlens.currentLine.pullRequests.enabled": false,
-    "powershell.powerShellDefaultVersion": "Windows PowerShell (x86)",
     "files.associations": {
         "*.w": "cpp"
     },
-    "terminal.integrated.fontSize": 16,
-    "nmake.selfhost-ring": "Canary",
-    "nmake.razzleTerminal": {
-        "createOnContextChange": "Disabled",
-        "createOnStart": "Never",
-        "displayOptions": "Never"
+    "files.exclude": {
+        "*.dll": true,
+        "*.exe": true
     },
+    "telemetry.enableTelemetry": false,
+    "terminal.integrated.fontSize": 16,
+    "workbench.colorTheme": "Monokai",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
+    /* Language agnostic plugins settings */
+    "cSpell.checkLimit": 10000,
+    "cSpell.language": "en,en-US",
+    "cSpell.maxDuplicateProblems": 100,
+    "cSpell.maxNumberOfProblems": 5000,
+    "git.enableSmartCommit": true,
+    "gitlens.codeLens.enabled": false,
+    "gitlens.currentLine.enabled": false,
+    "gitlens.currentLine.pullRequests.enabled": false,
+    /* Language specific plugins settings */
+    "C_Cpp.configurationWarnings": "Disabled",
+    "C_Cpp.default.enableConfigurationSquiggles": false,
+    "C_Cpp.dimInactiveRegions": false,
+    "nmake.selfhost-ring": "Canary",
+    "powershell.powerShellDefaultVersion": "Windows PowerShell (x86)",
     "vscode-nmake-tools.showMissingIntellisenseDependencies": true,
     "vscode-nmake-tools.notifyNewFeature": {
-        "restoreDependencies": false
-    }
+        "quickBuild": false,
+        "restoreDependencies": true
+    },
+    "nmake.alwaysInstallNewVersions": false,
+    "security.workspace.trust.banner": "never",
+    "security.workspace.trust.enabled": false,
+    "diffEditor.renderSideBySide": false,
 }
