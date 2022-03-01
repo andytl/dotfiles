@@ -40,11 +40,14 @@
     "powershell.powerShellDefaultVersion": "Windows PowerShell (x86)",
     "vscode-nmake-tools.showMissingIntellisenseDependencies": true,
     "vscode-nmake-tools.notifyNewFeature": {
-        "quickBuild": false,
-        "restoreDependencies": true
+        "restoreDependencies": false,
+        "buildLite": false,
+        "autoImport": false
     },
     "nmake.alwaysInstallNewVersions": false,
     "security.workspace.trust.banner": "never",
     "security.workspace.trust.enabled": false,
     "diffEditor.renderSideBySide": false,
+    "extensions.ignoreRecommendations": true,
+    "powershell.promptToUpdatePackageManagement": false,
 }

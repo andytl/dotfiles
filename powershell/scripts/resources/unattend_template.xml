@@ -11,9 +11,9 @@
                             <Type>Primary</Type>
                         </CreatePartition>
                         <CreatePartition wcm:action="add">
-                            <Order>4</Order>
-                            <Type>Primary</Type>
-                            <Extend>true</Extend>
+                            <Order>2</Order>
+                            <Size>100</Size>
+                            <Type>EFI</Type>
                         </CreatePartition>
                         <CreatePartition wcm:action="add">
                             <Order>3</Order>
@@ -21,9 +21,9 @@
                             <Type>MSR</Type>
                         </CreatePartition>
                         <CreatePartition wcm:action="add">
-                            <Order>2</Order>
-                            <Size>100</Size>
-                            <Type>EFI</Type>
+                            <Order>4</Order>
+                            <Type>Primary</Type>
+                            <Extend>true</Extend>
                         </CreatePartition>
                     </CreatePartitions>
                     <ModifyPartitions>
@@ -36,14 +36,6 @@
                             <TypeID>DE94BBA4-06D1-4D40-A16A-BFD50179D6AC</TypeID>
                         </ModifyPartition>
                         <ModifyPartition wcm:action="add">
-                            <Active>true</Active>
-                            <Format>NTFS</Format>
-                            <Label>Windows</Label>
-                            <Letter>C</Letter>
-                            <Order>4</Order>
-                            <PartitionID>4</PartitionID>
-                        </ModifyPartition>
-                        <ModifyPartition wcm:action="add">
                             <Order>2</Order>
                             <PartitionID>2</PartitionID>
                             <Label>System</Label>
@@ -52,6 +44,14 @@
                         <ModifyPartition wcm:action="add">
                             <PartitionID>3</PartitionID>
                             <Order>3</Order>
+                        </ModifyPartition>
+                        <ModifyPartition wcm:action="add">
+                            <Active>true</Active>
+                            <Format>NTFS</Format>
+                            <Label>Windows</Label>
+                            <Letter>C</Letter>
+                            <Order>4</Order>
+                            <PartitionID>4</PartitionID>
                         </ModifyPartition>
                     </ModifyPartitions>
                     <DiskID>0</DiskID>
