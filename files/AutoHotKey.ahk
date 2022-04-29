@@ -32,6 +32,7 @@ return
 
 #t::Run,C:\Program Files\ConEmu\ConEmu64.exe -run {Shells::PowerShell}
 #+t::Run,C:\Program Files\ConEmu\ConEmu64.exe -run {Shells::PowerShell (Admin)}
+#y::Run, *RunAs wt
 
 #s::Run, *RunAs "C:\Program Files (x86)\FileZilla Server\FileZilla Server.exe" /start
 #+s::Run, *RunAs "C:\Program Files (x86)\FileZilla Server\FileZilla Server.exe" /stop

@@ -65,6 +65,11 @@
         "Platforms": ["Linux"]
     },
     {
+        "Destination": "AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json",
+        "Source": "files/windowsterminal/settings.json",
+        "Platforms": ["Windows"]
+    },
+    {
         "Destination": "AppData/Roaming/Code/User/settings.json",
         "Source": "files/vscode/settings.json",
         "Platforms": ["Windows"]
