@@ -27,7 +27,9 @@ function Add-SubdirectoryPathIfPresent {
     param (
         $directory
     )
-    foreach ($subDir in (Get-ChildItem -Path $directory -Directory)) {
-        Add-PathIfPresent $subDir.FullName
+    if (Test-Path $directory) {
+        foreach ($subDir in (Get-ChildItem -Path $directory -Directory)) {
+            Add-PathIfPresent $subDir.FullName
+        }
     }
 }
