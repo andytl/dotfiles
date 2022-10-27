@@ -42,10 +42,11 @@ function CreateShortcut {
     $Shortcut.Save()
 }
 
+if (-not $(Get-Command Choco*)) {
+    iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+}
 
 choco feature enable -n allowGlobalConfirmation
-
-choco install 
 
 choco install vcredist140
 choco install microsoft-windows-terminal
@@ -80,11 +81,12 @@ choco install git.install
 choco install vscode
 # Install extensions
 RefreshPath
-code --install-extension ms-vscode.powershell
-code --install-extension ms-vscode.cpptools
-code --install-extension streetsidesoftware.code-spell-checker
+Invoke-Command { code --install-extension ms-vscode.powershell } -ErrorAction SilentlyContinue
+Invoke-Command { code --install-extension ms-vscode.cpptools } -ErrorAction SilentlyContinue
+Invoke-Command { code --install-extension streetsidesoftware.code-spell-checker } -ErrorAction SilentlyContinue
 
-if (-not (Get-Command vim)) {
+
+if (-not (Get-Command vim -ErrorAction SilentlyContinue)) {
     choco install vim
     git clone https://github.com/VundleVim/Vundle.vim.git $env:USERPROFILE\.vim\bundle\Vundle.vim
     # TODO Fork this repo and use own copy for security.
@@ -105,6 +107,7 @@ function GetDotfileRepo {
     #ssh-keygen.exe -q -f "$env:USERPROFILE\.ssh\id_rsa" -t rsa -N '""'
     $repoDir = "$env:USERPROFILE\Source\Repos\dotfiles"
     #(ssh-keyscan github.com) | Out-File  ~\.ssh\known_hosts -Append
+    git config --global core.autocrlf false
     git clone "https://github.com/andytl/dotfiles.git" $repoDir
     python "$repoDir\import.py" $env:USERPROFILE $repoDir import
 }
@@ -113,6 +116,8 @@ if (-not (Test-Path "$env:USERPROFILE\Source\Repos\dotfiles")) {
     GetDotfileRepo
 }
 
+# For registry keys, ignore delete failures
+$ErrorActionPreference = "Continue"
 # Apply custom registry settings
 reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Search /v BingSearchEnabled /t REG_DWORD /d 0 /f  
 reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Search /v AllowSearchToUseLocation /t REG_DWORD /d 0 /f
@@ -148,44 +153,44 @@ reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\SearchSettings /v IsMSACl
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\SearchSettings /v IsAADCloudSearchEnabled /t REG_DWORD /d 0 /f
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\SearchSettings /v IsDeviceSearchHistoryEnabled /t REG_DWORD /d 0 /f
 #let websites access my language list
-reg add HKCU\Control Panel\International\User Profile /v HttpAcceptLanguageOptOut /t REG_DWORD /d 1 /f
-reg add HKCU\SOFTWARE\Microsoft\Internet Explorer\International /v AcceptLanguage /f
+reg add "HKCU\Control Panel\International\User Profile" /v HttpAcceptLanguageOptOut /t REG_DWORD /d 1 /f
+reg add "HKCU\SOFTWARE\Microsoft\Internet Explorer\International" /v AcceptLanguage /f
 #let apps use advertising id
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo /v Enabled /t REG_DWORD /d 0 /f
-reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo /v Id /f
+reg delete HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo /v Id /f
 #Let windows track app launches
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v Start_TrackProgs /t REG_DWORD /d 0 /f
 #Ink/Typing Personalization
-HKCU\SOFTWARE\Microsoft\Personalization\Settings /v AcceptedPrivacyPolicy /t REG_DWORD /d 0 /f
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Language /v Enabled /t REG_DWORD /d 0 /f
-HKCU\SOFTWARE\Microsoft\InputPersonalization /v RestrictImplicitTextCollection /t REG_DWORD /d 1 /f
-HKCU\SOFTWARE\Microsoft\InputPersonalization /v RestrictImplicitInkCollection /t REG_DWORD /d 1 /f
-HKCU\SOFTWARE\Microsoft\InputPersonalization\TrainedDataStore /v HarvestContacts /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\Personalization\Settings /v AcceptedPrivacyPolicy /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Language /v Enabled /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\InputPersonalization /v RestrictImplicitTextCollection /t REG_DWORD /d 1 /f
+reg add HKCU\SOFTWARE\Microsoft\InputPersonalization /v RestrictImplicitInkCollection /t REG_DWORD /d 1 /f
+reg add HKCU\SOFTWARE\Microsoft\InputPersonalization\TrainedDataStore /v HarvestContacts /t REG_DWORD /d 0 /f
 #Diagnostic data
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack /v ShowedToastAtLevel /t REG_DWORD /d 1 /f
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Privacy /v TailoredExperiencesWithDiagnosticDataEnabled /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack /v ShowedToastAtLevel /t REG_DWORD /d 1 /f
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Privacy /v TailoredExperiencesWithDiagnosticDataEnabled /t REG_DWORD /d 0 /f
 #feedback freq
-HKCU\SOFTWARE\Microsoft\Siuf\Rules /v NumberOfSIUFInPeriod /t REG_DWORD /d 0 /f
-HKCU\SOFTWARE\Microsoft\Siuf\Rules /v PeriodInNanoSeconds /f
+reg add HKCU\SOFTWARE\Microsoft\Siuf\Rules /v NumberOfSIUFInPeriod /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\Siuf\Rules /v PeriodInNanoSeconds /f
 
 #Notify about restarts
-HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings /v RestartNotificationsAllowed2 /t REG_DWORD /d 1 /f
+reg add HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings /v RestartNotificationsAllowed2 /t REG_DWORD /d 1 /f
 
 #Show hidden files
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v "Hidden" /t REG_DWORD /d 1 /f
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v HideFileExt /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v "Hidden" /t REG_DWORD /d 1 /f
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v HideFileExt /t REG_DWORD /d 0 /f
 #full path in title bar
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v DontPrettyPath /t REG_DWORD /d 0 /f
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v HideIcons /t REG_DWORD /d 0 /f
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v HideDrivesWithNoMedia /t REG_DWORD /d 0 /f
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CabinetState /v FullPath /t REG_DWORD /d 1 /f
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v DontPrettyPath /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v HideIcons /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v HideDrivesWithNoMedia /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CabinetState /v FullPath /t REG_DWORD /d 1 /f
 # show drive letters
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer /v ShowDriveLettersFirst /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer /v ShowDriveLettersFirst /t REG_DWORD /d 0 /f
 #cortana
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v ShowCortanaButton /t REG_DWORD /d 0 /f
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search /v SearchboxTaskbarMode /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v ShowCortanaButton /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search /v SearchboxTaskbarMode /t REG_DWORD /d 0 /f
 # news on taskbar
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds /v ShellFeedsTaskbarViewMode /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds /v ShellFeedsTaskbarViewMode /t REG_DWORD /d 0 /f
 
 
 
