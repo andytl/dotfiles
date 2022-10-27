@@ -84,6 +84,14 @@ code --install-extension ms-vscode.powershell
 code --install-extension ms-vscode.cpptools
 code --install-extension streetsidesoftware.code-spell-checker
 
+if (-not (Get-Command vim)) {
+    choco install vim
+    git clone https://github.com/VundleVim/Vundle.vim.git $env:USERPROFILE\.vim\bundle\Vundle.vim
+    # TODO Fork this repo and use own copy for security.
+    #git clone https://github.com/sickill/vim-monokai.git $env:USERPROFILE\vimfiles\colors\monokai_repo
+    #Copy-Item $env:USERPROFILE\vimfiles\colors\monokai_repo\colors\*  $env:USERPROFILE\vimfiles\colors\
+}
+
 choco install autohotkey
 $ahkShortcutPath = "$env:AppData\Microsoft\Windows\Start Menu\Programs\Startup\autohotkey.lnk"
 if (-not (Test-Path $ahkShortcutPath)) {

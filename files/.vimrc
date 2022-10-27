@@ -131,7 +131,7 @@ set nowrap " Disable wrapping lines because it gets annoying for small windows
 " ================= Set color theme =================
 let g:rehash256 = 1
 " See .vim/colors
-color molokai
+color monokai
 
 " ================= User Keybinds =================
 

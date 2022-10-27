@@ -5,7 +5,7 @@
     [
         {
             "command": "scrollDownPage",
-            "keys": "ctrl+pgdn"
+            "keys": "pgdn"
         },
         {
             "command": 
@@ -22,6 +22,17 @@
                 "singleLine": false
             },
             "keys": "enter"
+        },
+        {
+            "command": 
+            {
+                "action": "prevTab"
+            },
+            "keys": "ctrl+pgup"
+        },
+        {
+            "command": "paste",
+            "keys": "ctrl+v"
         },
         {
             "command": "unbound",
@@ -48,8 +59,12 @@
             "keys": "ctrl+shift+pgup"
         },
         {
-            "command": "paste",
-            "keys": "ctrl+v"
+            "command": "unbound",
+            "keys": "ctrl+tab"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+tab"
         },
         {
             "command": "find",
@@ -58,6 +73,10 @@
         {
             "command": "scrollToBottom",
             "keys": "ctrl+end"
+        },
+        {
+            "command": "scrollUpPage",
+            "keys": "pgup"
         },
         {
             "command": 
@@ -87,8 +106,11 @@
             "keys": "ctrl+up"
         },
         {
-            "command": "scrollUpPage",
-            "keys": "ctrl+pgup"
+            "command": 
+            {
+                "action": "nextTab"
+            },
+            "keys": "ctrl+pgdn"
         }
     ],
     "copyFormatting": "none",
@@ -114,18 +136,6 @@
                 "hidden": false,
                 "name": "Azure Cloud Shell",
                 "source": "Windows.Terminal.Azure"
-            },
-            {
-                "guid": "{337cc4fd-4491-5ea2-9f02-14d15ea9231f}",
-                "hidden": false,
-                "name": "Developer Command Prompt for VS 2019",
-                "source": "Windows.Terminal.VisualStudio"
-            },
-            {
-                "guid": "{46bef57c-ad74-511d-af34-55a061ff28f7}",
-                "hidden": false,
-                "name": "Developer PowerShell for VS 2019",
-                "source": "Windows.Terminal.VisualStudio"
             }
         ]
     },

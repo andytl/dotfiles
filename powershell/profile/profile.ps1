@@ -38,11 +38,19 @@ if (Test-Path alias:curl) {
 }
 
 
-Set-Alias np "C:\Program Files (x86)\Notepad++\notepad++.exe"
 Set-Alias g git
 Set-Alias cjson ConvertTo-Json
 Set-Alias gclip Get-Clipboard
 
+function np {
+  param(
+    [prameter(ValueFromRemainingArguments=$true)] $files
+  )
+  if (Get-Command -Name "notepad++" -ErrorAction SilentlyContinue) {
+    notepad++ @files
+  }
+  & "C:\Program Files (x86)\Notepad++\notepad++.exe" @files
+}
 function flp ([Parameter(ValueFromPipeline = $true)]$inputObject) {
   $inputObject | Format-List -Property *
 }

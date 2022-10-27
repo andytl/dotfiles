@@ -47,7 +47,6 @@
     "nmake.alwaysInstallNewVersions": false,
     "security.workspace.trust.banner": "never",
     "security.workspace.trust.enabled": false,
-    "diffEditor.renderSideBySide": false,
     "extensions.ignoreRecommendations": true,
     "powershell.promptToUpdatePackageManagement": false,
 }
