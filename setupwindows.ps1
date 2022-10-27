@@ -123,69 +123,69 @@ REG ADD "HKCU\SOFTWARE\Microsoft\Windows\DWM" /V EnableAeroPeek /T REG_DWORD /D 
 
 
 #Disable windows welcome experience after updates, and disable new/suggested
-reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager\SubscribedContent-310094Enabled /t REG_DWORD /d 0 /f
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\UserProfileEngagement\ScoobeSystemSettingEnabled 0
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager\SubscribedContent-338382Enabled 0
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager\SubscribedContent-353699Enabled 0
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\DisableAutoplay 1
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v SubscribedContent-310094Enabled /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\UserProfileEngagement /v ScoobeSystemSettingEnabled /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v SubscribedContent-338382Enabled /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v SubscribedContent-353699Enabled /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers /v DisableAutoplay /t REG_DWORD /d 1 /f
 #show suggestions in settings
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager\SubscribedContent-338386Enabled 0
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager\SubscribedContent-353695Enabled 0
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager\SubscribedContent-353697Enabled 0
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v SubscribedContent-338386Enabled /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v SubscribedContent-353695Enabled /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v SubscribedContent-353697Enabled /t REG_DWORD /d 0 /f
 #show suggestions in start
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager\SubscribedContent-338381Enabled 0
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v SubscribedContent-338381Enabled /t REG_DWORD /d 0 /f
 #show recently opened items in start/quick access
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\Start_TrackDocs 0
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize\AppsUseLightTheme 0
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v Start_TrackDocs /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v AppsUseLightTheme /t REG_DWORD /d 0 /f
 #badges on taskbar buttons
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarBadges
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v TaskbarBadges /t REG_DWORD /d 0 /f
 #gamebar
-HKCU\SOFTWARE\Microsoft\GameBar\UseNexusForGameBarEnabled 0
+reg add HKCU\SOFTWARE\Microsoft\GameBar /v UseNexusForGameBarEnabled /t REG_DWORD /d 0 /f
 #gamemode
-HKCU\SOFTWARE\Microsoft\GameBar\AutoGameModeEnabled 0
+reg add HKCU\SOFTWARE\Microsoft\GameBar /v AutoGameModeEnabled /t REG_DWORD /d 0 /f
 #search settings
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\SearchSettings\IsMSACloudSearchEnabled 0
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\SearchSettings\IsAADCloudSearchEnabled 0
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\SearchSettings\IsDeviceSearchHistoryEnabled 0
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\SearchSettings /v IsMSACloudSearchEnabled /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\SearchSettings /v IsAADCloudSearchEnabled /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\SearchSettings /v IsDeviceSearchHistoryEnabled /t REG_DWORD /d 0 /f
 #let websites access my language list
-HKCU\Control Panel\International\User Profile\HttpAcceptLanguageOptOut 1
-HKCU\SOFTWARE\Microsoft\Internet Explorer\International\AcceptLanguage #DELETE
+reg add HKCU\Control Panel\International\User Profile /v HttpAcceptLanguageOptOut /t REG_DWORD /d 1 /f
+reg add HKCU\SOFTWARE\Microsoft\Internet Explorer\International /v AcceptLanguage /f
 #let apps use advertising id
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo\Enabled 0
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo\Id #DEL
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo /v Enabled /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo /v Id /f
 #Let windows track app launches
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\Start_TrackProgs 0
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v Start_TrackProgs /t REG_DWORD /d 0 /f
 #Ink/Typing Personalization
-HKCU\SOFTWARE\Microsoft\Personalization\Settings\AcceptedPrivacyPolicy 0
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Language\Enabled 0
-HKCU\SOFTWARE\Microsoft\InputPersonalization\RestrictImplicitTextCollection 1
-HKCU\SOFTWARE\Microsoft\InputPersonalization\RestrictImplicitInkCollection 1
-HKCU\SOFTWARE\Microsoft\InputPersonalization\TrainedDataStore\HarvestContacts 0
+HKCU\SOFTWARE\Microsoft\Personalization\Settings /v AcceptedPrivacyPolicy /t REG_DWORD /d 0 /f
+HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Language /v Enabled /t REG_DWORD /d 0 /f
+HKCU\SOFTWARE\Microsoft\InputPersonalization /v RestrictImplicitTextCollection /t REG_DWORD /d 1 /f
+HKCU\SOFTWARE\Microsoft\InputPersonalization /v RestrictImplicitInkCollection /t REG_DWORD /d 1 /f
+HKCU\SOFTWARE\Microsoft\InputPersonalization\TrainedDataStore /v HarvestContacts /t REG_DWORD /d 0 /f
 #Diagnostic data
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack\ShowedToastAtLevel 1
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Privacy\TailoredExperiencesWithDiagnosticDataEnabled 0
+HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack /v ShowedToastAtLevel /t REG_DWORD /d 1 /f
+HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Privacy /v TailoredExperiencesWithDiagnosticDataEnabled /t REG_DWORD /d 0 /f
 #feedback freq
-HKCU\SOFTWARE\Microsoft\Siuf\Rules\NumberOfSIUFInPeriod 0
-HKCU\SOFTWARE\Microsoft\Siuf\Rules\PeriodInNanoSeconds #DEL
+HKCU\SOFTWARE\Microsoft\Siuf\Rules /v NumberOfSIUFInPeriod /t REG_DWORD /d 0 /f
+HKCU\SOFTWARE\Microsoft\Siuf\Rules /v PeriodInNanoSeconds /f
 
 #Notify about restarts
-HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings\RestartNotificationsAllowed2 1
+HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings /v RestartNotificationsAllowed2 /t REG_DWORD /d 1 /f
 
 #Show hidden files
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\Hidden 1
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\HideFileExt 0
+HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v "Hidden" /t REG_DWORD /d 1 /f
+HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v HideFileExt /t REG_DWORD /d 0 /f
 #full path in title bar
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\DontPrettyPath 0
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\HideIcons 0
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\HideDrivesWithNoMedia 0
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CabinetState\FullPath 1
+HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v DontPrettyPath /t REG_DWORD /d 0 /f
+HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v HideIcons /t REG_DWORD /d 0 /f
+HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v HideDrivesWithNoMedia /t REG_DWORD /d 0 /f
+HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CabinetState /v FullPath /t REG_DWORD /d 1 /f
 # show drive letters
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ShowDriveLettersFirst 0
+HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer /v ShowDriveLettersFirst /t REG_DWORD /d 0 /f
 #cortana
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\ShowCortanaButton 0
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search\SearchboxTaskbarMode 0
+HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v ShowCortanaButton /t REG_DWORD /d 0 /f
+HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search /v SearchboxTaskbarMode /t REG_DWORD /d 0 /f
 # news on taskbar
-HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds\ShellFeedsTaskbarViewMode 0
+HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds /v ShellFeedsTaskbarViewMode /t REG_DWORD /d 0 /f
 
 
 
