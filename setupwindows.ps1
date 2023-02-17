@@ -116,6 +116,13 @@ if (-not (Test-Path "$env:USERPROFILE\Source\Repos\dotfiles")) {
     GetDotfileRepo
 }
 
+# Remove Windows junk
+$keep = "(Microsoft|Windows|NVIDIA|Realtek|Intel|AMD|PaloAltoNetworks)";
+$apps = (Get-AppxPackage | ? { $_.PackageFullName -notmatch "^$keep|\.$keep" -and $_.Publisher -notmatch "$keep" })
+Write-Output "Removing apps:"
+($apps).PackageFullName
+$apps | Remove-AppPackage
+
 # For registry keys, ignore delete failures
 $ErrorActionPreference = "Continue"
 # Apply custom registry settings
@@ -139,9 +146,11 @@ reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v SubscribedContent-353697Enabled /t REG_DWORD /d 0 /f
 #show suggestions in start
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v SubscribedContent-338381Enabled /t REG_DWORD /d 0 /f
+
 #show recently opened items in start/quick access
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v Start_TrackDocs /t REG_DWORD /d 0 /f
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v AppsUseLightTheme /t REG_DWORD /d 0 /f
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize /v SystemUsesLightTheme /t REG_DWORD /d 0 /f
 #badges on taskbar buttons
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v TaskbarBadges /t REG_DWORD /d 0 /f
 #gamebar
@@ -152,6 +161,8 @@ reg add HKCU\SOFTWARE\Microsoft\GameBar /v AutoGameModeEnabled /t REG_DWORD /d 0
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\SearchSettings /v IsMSACloudSearchEnabled /t REG_DWORD /d 0 /f
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\SearchSettings /v IsAADCloudSearchEnabled /t REG_DWORD /d 0 /f
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\SearchSettings /v IsDeviceSearchHistoryEnabled /t REG_DWORD /d 0 /f
+    #show suggestions in search
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\SearchSettings /v IsDynamicSearchBoxEnabled /t REG_DWORD /d 0 /f
 #let websites access my language list
 reg add "HKCU\Control Panel\International\User Profile" /v HttpAcceptLanguageOptOut /t REG_DWORD /d 1 /f
 reg add "HKCU\SOFTWARE\Microsoft\Internet Explorer\International" /v AcceptLanguage /f
@@ -186,13 +197,22 @@ reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v Hide
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CabinetState /v FullPath /t REG_DWORD /d 1 /f
 # show drive letters
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer /v ShowDriveLettersFirst /t REG_DWORD /d 0 /f
+    # edge tabs on alt-tab
+    reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v MultiTaskingAltTabFilter /t REG_DWORD /d 3 /f
 #cortana
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v ShowCortanaButton /t REG_DWORD /d 0 /f
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search /v SearchboxTaskbarMode /t REG_DWORD /d 0 /f
-# news on taskbar
+
+#Taskbar settings
+    # news on taskbar
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds /v ShellFeedsTaskbarViewMode /t REG_DWORD /d 0 /f
-
-
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v TaskbarMn /t REG_DWORD /d 0 /f
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v TaskbarDa /t REG_DWORD /d 0 /f
+    # Left align taskbar
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v TaskbarAl /t REG_DWORD /d 0 /f
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v TaskbarFlashing /t REG_DWORD /d 0 /f
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v TaskbarSh /t REG_DWORD /d 0 /f
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v TaskbarSn /t REG_DWORD /d 0 /f
 
 
 

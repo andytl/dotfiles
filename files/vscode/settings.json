@@ -49,4 +49,6 @@
     "security.workspace.trust.enabled": false,
     "extensions.ignoreRecommendations": true,
     "powershell.promptToUpdatePackageManagement": false,
+    "C_Cpp.vcFormat.wrap.preserveBlocks": "never",
+    "C_Cpp.formatting": "Disabled",
 }

@@ -8,6 +8,14 @@
             "keys": "pgdn"
         },
         {
+            "command": "find",
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "command": "paste",
+            "keys": "ctrl+v"
+        },
+        {
             "command": 
             {
                 "action": "copy",
@@ -29,10 +37,6 @@
                 "action": "prevTab"
             },
             "keys": "ctrl+pgup"
-        },
-        {
-            "command": "paste",
-            "keys": "ctrl+v"
         },
         {
             "command": "unbound",
@@ -65,10 +69,6 @@
         {
             "command": "unbound",
             "keys": "ctrl+shift+tab"
-        },
-        {
-            "command": "find",
-            "keys": "ctrl+shift+f"
         },
         {
             "command": "scrollToBottom",
@@ -118,7 +118,15 @@
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
     "profiles": 
     {
-        "defaults": {},
+        "defaults": 
+        {
+            "font": 
+            {
+                "face": "Inconsolata",
+                "size": 14,
+                "weight": "medium"
+            }
+        },
         "list": 
         [
             {
@@ -136,6 +144,18 @@
                 "hidden": false,
                 "name": "Azure Cloud Shell",
                 "source": "Windows.Terminal.Azure"
+            },
+            {
+                "guid": "{ad6c195e-d10b-56d7-9e6a-71287c58a454}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{29f5a271-9884-582f-9e58-b8ba077b21ab}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
             }
         ]
     },
