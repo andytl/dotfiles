@@ -37,7 +37,6 @@
     "C_Cpp.default.enableConfigurationSquiggles": false,
     "C_Cpp.dimInactiveRegions": false,
     "nmake.selfhost-ring": "Canary",
-    "powershell.powerShellDefaultVersion": "Windows PowerShell (x86)",
     "vscode-nmake-tools.showMissingIntellisenseDependencies": true,
     "vscode-nmake-tools.notifyNewFeature": {
         "restoreDependencies": false,
@@ -48,7 +47,10 @@
     "security.workspace.trust.banner": "never",
     "security.workspace.trust.enabled": false,
     "extensions.ignoreRecommendations": true,
+    "powershell.powerShellDefaultVersion": "Windows PowerShell (x64)",
     "powershell.promptToUpdatePackageManagement": false,
     "C_Cpp.vcFormat.wrap.preserveBlocks": "never",
     "C_Cpp.formatting": "Disabled",
+    "cSpell.ignoreWords": [],
+    "editor.copyWithSyntaxHighlighting": false,
 }

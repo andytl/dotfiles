@@ -44,7 +44,7 @@ Set-Alias gclip Get-Clipboard
 
 function np {
   param(
-    [prameter(ValueFromRemainingArguments=$true)] $files
+    [parameter(ValueFromRemainingArguments=$true)] $files
   )
   if (Get-Command -Name "notepad++" -ErrorAction SilentlyContinue) {
     notepad++ @files
@@ -88,6 +88,11 @@ function rc {
 function cdl {
   $f = Get-ChildItem .\ | Sort-Object -Property CreationTime -Descending | Select-Object -First 1
   Set-Location $f
+}
+
+function code-admin {
+  # https://github.com/microsoft/vscode/issues/184888
+  code --no-sandbox --disable-gpu-sandbox
 }
 
 function Backup-DotFiles () {

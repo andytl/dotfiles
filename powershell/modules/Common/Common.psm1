@@ -42,6 +42,11 @@ function Start-CommandTxtAsAdmin {
     }
 }
 
+
+################################################################################
+# System Helpers
+################################################################################
+
 function Set-EnvironmentVariable {
     param (
         [string] $variableName,
@@ -65,12 +70,33 @@ function Clear-EnvironmentVariable {
     )
 }
 
+# Locate the local network IP address of the machine.
 function Get-MachineIpAddress {
-    (Get-NetIPAddress | Where-Object { $_.AddressFamily -eq "IPV4" -and $_.InterfaceAlias -match "\(Ethernet\)"}).IPAddress
+    # For most machines, the IP address of the network adapter would be assigned via DHCP.
+    $interfaces = @(Get-NetIPAddress -AddressFamily IPv4 -PrefixOrigin dhcp)
+    # If there are multiple adapters, we prefer the ethernet adapter over wireless.
+    $wiredInterfaces = @($interfaces | Where-Object { $_.InterfaceAlias -match "Ethernet" })
+    if ($wiredInterfaces.Count -gt 0) {
+        $wiredInterfaces[0].IPAddress
+    } elseif ($interfaces.Count -gt 0) {
+        $interfaces[0].IPAddress
+    } else {
+        throw "Get-MachineIpAddress: Interface not found"
+    }
 }
 
+function Get-UnusedDriveLetters {
+    param (
+        [int] $numberOfDrives = 1
+    )
+    $drives = Get-PsDrive -PSProvider FileSystem | ForEach-Object { $_.Name.ToLowerInvariant() }
+    $availableDrives = 'c'..'z' | Where-Object { $_ -notin $drives }
+    $availableDrives | Select-Object -First $numberOfDrives
+}
 
+################################################################################
 # Text Manipulation
+################################################################################
 
 function Read-AnswerToBool {
     param(
@@ -234,15 +260,6 @@ function Invoke-OnVMAsJob {
 
 
 # Coding and build
-
-function Set-CodeAnalysisMode {
-    param (
-        [bool] $mode
-    )
-    $caFile = Get-Content -Raw ".\build.props"
-    $newCaFile = $caFile -replace "<RunCodeAnalysis>\w*</RunCodeAnalysis>", "<RunCodeAnalysis>$mode</RunCodeAnalysis>"
-    Set-Content -Path ".\build.props" -Value $newCaFile -Force
-}
 
 # Reads Ini file into Double-nested Hash
 # Taken From https://blogs.technet.microsoft.com/heyscriptingguy/2011/08/20/use-powershell-to-work-with-any-ini-file/
