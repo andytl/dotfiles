@@ -72,8 +72,16 @@ function Clear-EnvironmentVariable {
 
 # Locate the local network IP address of the machine.
 function Get-MachineIpAddress {
-    # For most machines, the IP address of the network adapter would be assigned via DHCP.
-    $interfaces = @(Get-NetIPAddress -AddressFamily IPv4 -PrefixOrigin dhcp)
+    param (
+        [switch] $v6 = $false
+    )
+    $interfaces = $null;
+    if ($v6) {
+        $interfaces = @(Get-NetIPAddress -AddressFamily IPv6 -PrefixOrigin RouterAdvertisement -SuffixOrigin Link)
+    } else {
+        # For most machines, the IP address of the network adapter would be assigned via DHCP.
+        $interfaces = @(Get-NetIPAddress -AddressFamily IPv4 -PrefixOrigin dhcp)
+    }
     # If there are multiple adapters, we prefer the ethernet adapter over wireless.
     $wiredInterfaces = @($interfaces | Where-Object { $_.InterfaceAlias -match "Ethernet" })
     if ($wiredInterfaces.Count -gt 0) {

@@ -9,6 +9,7 @@
 	a = add .
 	s = status
 	st = stash
+	sta = stash apply
 	stp = stash pop
 	b = branch -vv
 	ba = branch -vv -a
@@ -68,7 +69,8 @@
 	autosetupmerge = true
 
 # Expected to include
-#  core.editoruser.name/email,
+#  core.editor
+#  user.name/email,
 #  credential.helper
 #  and any custom aliases.
 [include]
