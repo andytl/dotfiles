@@ -14,8 +14,8 @@
 
 #j::
 {
-  Run "notepad" "%A_MyDocuments%\AutoHotKey.ahk" ; "C:\Program Files (x86)\Vim\vim74\gvim.exe"
-  Sleep 5000
+  Run "notepad.exe %A_MyDocuments%\AutoHotKey.ahk"
+  Sleep 5000  
   WinActivate "AutoHotKey.ahk - Notepad"
 }
 
