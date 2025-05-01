@@ -1,29 +1,6 @@
 ﻿
 $ErrorActionPreference = "Stop"
 
-function WaitForAllOf {
-    param (
-        $processGlob
-    )
-    $processes = $null
-    while (-not $processes) {
-        $processes = (Get-Process "*$processGlob*")
-    }
-    foreach ($process in $processes) { 
-        $process.WaitForExit()
-    }
-}
-
-function TryDownload {
-    param (
-        $url,
-        $output
-    )
-    if (-not (Test-Path $output)) {
-        Invoke-WebRequest $url -OutFile $output
-    }
-}
-
 function RefreshPath {
     $env:Path =
         [System.Environment]::GetEnvironmentVariable("Path","Machine") +
@@ -58,6 +35,7 @@ function WingetInstall {
 Invoke-WebRequest -Uri https://aka.ms/getwinget -OutFile Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
 Add-AppxPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
 
+WingetInstall id Microsoft.PowerShell
 WingetInstall id Microsoft.Sysinternals.ProcessMonitor
 WingetInstall id Mozilla.Firefox
 WingetInstall id Notepad++.Notepad++
@@ -76,24 +54,11 @@ Invoke-Command { code --install-extension ms-vscode.powershell } -ErrorAction Si
 Invoke-Command { code --install-extension ms-vscode.cpptools } -ErrorAction SilentlyContinue
 Invoke-Command { code --install-extension streetsidesoftware.code-spell-checker } -ErrorAction SilentlyContinue
 
-<#
-
-if (-not (Get-Command vim -ErrorAction SilentlyContinue)) {
-    choco install vim
-    git clone https://github.com/VundleVim/Vundle.vim.git $env:USERPROFILE\.vim\bundle\Vundle.vim
-    # TODO Fork this repo and use own copy for security.
-    #git clone https://github.com/sickill/vim-monokai.git $env:USERPROFILE\vimfiles\colors\monokai_repo
-    #Copy-Item $env:USERPROFILE\vimfiles\colors\monokai_repo\colors\*  $env:USERPROFILE\vimfiles\colors\
-}
-#>
 
 $ahkShortcutPath = "$env:AppData\Microsoft\Windows\Start Menu\Programs\Startup\autohotkey.lnk"
 if (-not (Test-Path $ahkShortcutPath)) {
     CreateShortcut  $ahkShortcutPath 'C:\Program Files\AutoHotkey\v2\AutoHotkey64.exe' " $env:USERPROFILE\Documents\Autohotkey.ahk"
 }
-
-
-
 
 
 function GetDotfileRepo {

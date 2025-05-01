@@ -16,10 +16,14 @@
                 "action": "prevTab"
             },
             "id": "User.prevTab.0"
+        },
+        {
+            "command": "paste",
+            "id": "User.paste"
         }
     ],
     "copyFormatting": "none",
-    "copyOnSelect": false,
+    "copyOnSelect": true,
     "defaultProfile": "{a5945ea3-d2f9-4c9b-ae95-375bf36cfb38}",
     "keybindings": 
     [
@@ -38,6 +42,10 @@
         {
             "id": "Terminal.ScrollDown",
             "keys": "ctrl+down"
+        },
+        {
+            "id": "User.paste",
+            "keys": "ctrl+v"
         }
     ],
     "newTabMenu": 

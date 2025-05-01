@@ -1,0 +1,1 @@
+. $env:USERPROFILE\Documents\WindowsPowershell\profile.ps1
