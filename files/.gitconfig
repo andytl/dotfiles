@@ -28,8 +28,9 @@
 	dh1w = diff HEAD^1 --color-words
 	rl = reflog
 	r = reset
-	rh = reset HEAD
-	rhh = reset --hard HEAD
+	rh = reset --hard
+	rhe = reset HEAD
+	rhhe = reset --hard HEAD
 	rbd = rebase develop
 	rbm = rebase master
 	rbim = rebase --interactive master
@@ -50,6 +51,9 @@
 	pof = push origin --force
 	ct = commit
 	cta = commit --amend
+	cp = cherry-pick
+	cpn = cherry-pick --no-commit
+	cpc = cherry-pick --continue
 	p = pull
 	fp = fetch origin --prune
 	rc = config --global -e

@@ -4,130 +4,42 @@
     "actions": 
     [
         {
-            "command": "scrollDownPage",
-            "id": "User.scrollDownPage",
-            "keys": "pgdn"
-        },
-        {
-            "command": "find",
-            "id": "User.find",
-            "keys": "ctrl+shift+f"
-        },
-        {
-            "command": "paste",
-            "id": "User.paste",
-            "keys": "ctrl+v"
-        },
-        {
             "command": 
             {
-                "action": "copy",
-                "singleLine": false
+                "action": "nextTab"
             },
-            "id": "User.copy",
-            "keys": "ctrl+c"
-        },
-        {
-            "command": 
-            {
-                "action": "copy",
-                "singleLine": false
-            },
-            "keys": "enter"
+            "id": "User.nextTab.0"
         },
         {
             "command": 
             {
                 "action": "prevTab"
             },
-            "id": "User.prevTab",
-            "keys": "ctrl+pgup"
-        },
-        {
-            "command": "unbound",
-            "keys": "ctrl+shift+down"
-        },
-        {
-            "command": "unbound",
-            "keys": "ctrl+shift+pgdn"
-        },
-        {
-            "command": "unbound",
-            "keys": "ctrl+shift+end"
-        },
-        {
-            "command": "unbound",
-            "keys": "ctrl+shift+home"
-        },
-        {
-            "command": "unbound",
-            "keys": "ctrl+shift+up"
-        },
-        {
-            "command": "unbound",
-            "keys": "ctrl+shift+pgup"
-        },
-        {
-            "command": "unbound",
-            "keys": "ctrl+tab"
-        },
-        {
-            "command": "unbound",
-            "keys": "ctrl+shift+tab"
-        },
-        {
-            "command": "scrollToBottom",
-            "id": "User.scrollToBottom",
-            "keys": "ctrl+end"
-        },
-        {
-            "command": "scrollUpPage",
-            "id": "User.scrollUpPage",
-            "keys": "pgup"
-        },
-        {
-            "command": 
-            {
-                "action": "scrollDown"
-            },
-            "id": "User.scrollDown",
-            "keys": "ctrl+down"
-        },
-        {
-            "command": 
-            {
-                "action": "splitPane",
-                "split": "auto",
-                "splitMode": "duplicate"
-            },
-            "id": "User.splitPane",
-            "keys": "alt+shift+d"
-        },
-        {
-            "command": "scrollToTop",
-            "id": "User.scrollToTop",
-            "keys": "ctrl+home"
-        },
-        {
-            "command": 
-            {
-                "action": "scrollUp"
-            },
-            "id": "User.scrollUp",
-            "keys": "ctrl+up"
-        },
-        {
-            "command": 
-            {
-                "action": "nextTab"
-            },
-            "id": "User.nextTab",
-            "keys": "ctrl+pgdn"
+            "id": "User.prevTab.0"
         }
     ],
     "copyFormatting": "none",
     "copyOnSelect": false,
-    "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+    "defaultProfile": "{a5945ea3-d2f9-4c9b-ae95-375bf36cfb38}",
+    "keybindings": 
+    [
+        {
+            "id": "Terminal.ScrollUp",
+            "keys": "ctrl+up"
+        },
+        {
+            "id": "User.prevTab.0",
+            "keys": "ctrl+pgup"
+        },
+        {
+            "id": "User.nextTab.0",
+            "keys": "ctrl+pgdn"
+        },
+        {
+            "id": "Terminal.ScrollDown",
+            "keys": "ctrl+down"
+        }
+    ],
     "newTabMenu": 
     [
         {
@@ -181,6 +93,14 @@
                 "hidden": false,
                 "name": "Git Bash",
                 "source": "Git"
+            },
+            {
+                "commandline": "\"C:\\Program Files\\PowerShell\\7\\pwsh.exe\"",
+                "guid": "{a5945ea3-d2f9-4c9b-ae95-375bf36cfb38}",
+                "hidden": false,
+                "icon": "ms-appx:///ProfileIcons/pwsh.png",
+                "name": "PowerShell 7",
+                "startingDirectory": "%USERPROFILE%"
             }
         ]
     },
