@@ -47,10 +47,16 @@
     "security.workspace.trust.banner": "never",
     "security.workspace.trust.enabled": false,
     "extensions.ignoreRecommendations": true,
-    "powershell.powerShellDefaultVersion": "Windows PowerShell (x64)",
+    "powershell.powerShellDefaultVersion": "PowerShell (x64)",
     "powershell.promptToUpdatePackageManagement": false,
     "C_Cpp.vcFormat.wrap.preserveBlocks": "never",
     "C_Cpp.formatting": "Disabled",
     "cSpell.ignoreWords": [],
     "editor.copyWithSyntaxHighlighting": false,
+    "diffEditor.ignoreTrimWhitespace": true,
+    "gitlens.advanced.messages": {
+        "suppressRebaseSwitchToTextWarning": true
+    },
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "diffEditor.renderSideBySide": false,
 }

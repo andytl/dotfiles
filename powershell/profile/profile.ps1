@@ -160,7 +160,17 @@ function gitBranchCleanup() {
 }
 
 function codecpp() {
-  cmd /k "`"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.bat`" && code && exit"
+  $paths = @(
+    "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\Common7\Tools\VsDevCmd.bat",
+    "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.bat"
+  )
+  foreach ($path in $paths) {
+    if (Test-Path -Path $path) {
+      cmd /k "`"$path`" && code && exit"
+      return;
+    }
+  }
+  Write-Host "Could not find VsDevCmd.bat"
 }
 
 

@@ -109,6 +109,12 @@
                 "icon": "ms-appx:///ProfileIcons/pwsh.png",
                 "name": "PowerShell 7",
                 "startingDirectory": "%USERPROFILE%"
+            },
+            {
+                "guid": "{16208362-94fc-5b1f-a491-5b2624d5ab56}",
+                "hidden": true,
+                "name": "Visual Studio Debug Console",
+                "source": "VSDebugConsole"
             }
         ]
     },
