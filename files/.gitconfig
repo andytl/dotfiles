@@ -68,14 +68,22 @@
 	renames = copies
 	mnemonicprefix = true
 	wordRegex = \\w+|.
+	algorithm = histogram
 
 [branch]
 	autosetupmerge = true
 
-# Expected to include
+# Commenting out in favor of having the a local config (i.e. .local.gitconfig) include the global
+# (.gitconfig) instead of the other way around.
+# This fixes the issue where Git Credential Manager keeps adding the credential entries to the global
+# config rather than local config.
+# See https://github.com/git-ecosystem/git-credential-manager/issues/1696
+# Where in use, the shell profile points GIT_CONFIG_GLOBAL to the local version
+# (GIT_CONFIG_GLOBAL=~/.local.gitconfig). The local then includes the global.
+# Local config is expected to include
 #  core.editor
 #  user.name/email,
 #  credential.helper
 #  and any custom aliases.
-[include]
-	path = ~/.local.gitconfig
+#[include]
+#	path = .local.gitconfig
