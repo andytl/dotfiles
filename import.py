@@ -35,19 +35,34 @@ def readConfigFile(repoDir):
 
 def recursiveCopyNode(srcLoc, dstLoc, mode):
     #print("recursiveCopyNode({0},{1})".format(srcLoc, dstLoc))
-    if not srcLoc.exists():
+    if srcLoc is not None and not srcLoc.exists():
         print("{0} does not exist".format(srcLoc))
-    elif srcLoc.is_dir():
+    elif srcLoc is not None and srcLoc.is_dir():
         print("In Dir: {0}".format(srcLoc))
         dstLoc.mkdir(parents=True, exist_ok=True)
+        copied = set()
         for node in srcLoc.iterdir():
-            fileName = node.relative_to(srcLoc);
+            fileName = node.relative_to(srcLoc)
+            copied.add(fileName)
             recursiveCopyNode(node, Path(dstLoc, fileName), mode)
+        for node in dstLoc.iterdir():
+            fileName = node.relative_to(dstLoc)
+            if fileName not in copied:
+                recursiveCopyNode(None, node, mode)
     else:
         print(" v--< {0}\n +--> {1}\n".format(srcLoc, dstLoc))
-        shutil.copy(str(srcLoc), str(dstLoc))
-        if dstLoc.suffix in CHMOD_EXTENSIONS and platform != "Windows" and mode == "import":
-            dstLoc.chmod(0o740)
+        if srcLoc is None:
+            if dstLoc.is_dir():
+                shutil.rmtree(str(dstLoc), True)
+                dstLoc.rmdir()
+                print("Directory {0} removed.".format(dstLoc))
+            elif dstLoc.is_file():
+                dstLoc.unlink()
+                print("File {0} removed.".format(dstLoc))
+        else: # srcLoc.is_file():
+            shutil.copy(str(srcLoc), str(dstLoc))
+            if dstLoc.suffix in CHMOD_EXTENSIONS and platform != "Windows" and mode == "import":
+                dstLoc.chmod(0o740)
 
 def processMapping(homeDir, repoDir, mode, mapping):
     repoLoc = Path(repoDir, mapping["Source"])

@@ -95,16 +95,6 @@
         "Platforms": ["Windows"]
     },
     {
-        "Destination": "Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1",
-        "Source": "powershell/profile/Microsoft.PowerShell_profile.ps1",
-        "Platforms": ["Windows"]
-    },
-    {
-        "Destination": "Documents/WindowsPowerShell/Microsoft.PowerShellISE_profile.ps1",
-        "Source": "powershell/profile/Microsoft.PowerShellISE_profile.ps1",
-        "Platforms": ["Windows"]
-    },
-    {
         "Destination": "Documents/AutoHotKeyU64.ahk",
         "Source": "files/AutoHotKeyU64.ahk",
         "Platforms": ["Windows"]

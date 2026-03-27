@@ -1,7 +1,28 @@
 
 Set-StrictMode -Version Latest
 
-Import-Module "Personal\Common"
+function Set-EnvironmentVariable {
+    param (
+        [string] $variableName,
+        [string] $variableValue
+    )
+    [System.Environment]::SetEnvironmentVariable(
+        $variableName,
+        $variableValue,
+        [System.EnvironmentVariableTarget]::User
+    )
+}
+
+function Clear-EnvironmentVariable {
+    param (
+        [string] $variableName
+    )
+    [System.Environment]::SetEnvironmentVariable(
+        $variableName,
+        $null,
+        [System.EnvironmentVariableTarget]::User
+    )
+}
 
 function Add-PSModulePath {
     param(
@@ -32,4 +53,17 @@ function Add-SubdirectoryPathIfPresent {
             Add-PathIfPresent $subDir.FullName
         }
     }
+}
+
+# Setters for Specific env Vars
+function Set-EnvironmentSslKeyLogFile ($enabled) {
+  # Enable Secret logging for TLS connections
+  # https://jimshaver.net/2015/02/11/decrypting-tls-browser-traffic-with-wireshark-the-easy-way/
+  $varName = "SSLKEYLOGFILE"
+  $varValue = "$env:USERPROFILE\Documents\sslkeylog.log"
+  if ($enabled) {
+    Set-EnvironmentVariable $varName $varValue
+  } else {
+    Clear-EnvironmentVariable $varName
+  }
 }

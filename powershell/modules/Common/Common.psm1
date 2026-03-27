@@ -1,6 +1,9 @@
 
 Set-StrictMode -Version Latest
 
+. "$PSScriptRoot\Scripts\TabCompletion.ps1"
+. "$PSScriptRoot\Scripts\VMUtils.ps1"
+
 # Note that powershell jobs are probably a better solution to this if the goal is to capture stdout from Write-Host.
 function Start-ProcessWithRedirect {
     param (
@@ -46,29 +49,6 @@ function Start-CommandTxtAsAdmin {
 ################################################################################
 # System Helpers
 ################################################################################
-
-function Set-EnvironmentVariable {
-    param (
-        [string] $variableName,
-        [string] $variableValue
-    )
-    [System.Environment]::SetEnvironmentVariable(
-        $variableName,
-        $variableValue,
-        [System.EnvironmentVariableTarget]::User
-    )
-}
-
-function Clear-EnvironmentVariable {
-    param (
-        [string] $variableName
-    )
-    [System.Environment]::SetEnvironmentVariable(
-        $variableName,
-        $null,
-        [System.EnvironmentVariableTarget]::User
-    )
-}
 
 # Locate the local network IP address of the machine.
 function Get-MachineIpAddress {
