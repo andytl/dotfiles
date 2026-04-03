@@ -7,3 +7,5 @@ Invoke-RestMethod -Uri "https://raw.githubusercontent.com/andytl/dotfiles/master
 .\setupwindows.ps1
 ```
 
+# Linux/Mac
+Can set `git config core.fileMode false` to avoid permission changes on the repo.

@@ -35,6 +35,11 @@
         "Platforms": ["Mac", "Linux"]
     },
     {
+        "Destination": ".zprofile",
+        "Source": "files/.zprofile",
+        "Platforms": ["Mac", "Linux"]
+    },
+    {
         "Destination": ".tmux.conf",
         "Source": "files/.tmux.conf",
         "Platforms": ["Mac", "Linux"]
