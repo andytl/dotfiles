@@ -22,7 +22,7 @@ Import-Module "Personal\GitHelpers" -Force
 Add-PathIfPresent "$env:USERPROFILE\Documents\WindowsPowerShell\Scripts"
 Add-PathIfPresent "$env:USERPROFILE\bin"
 Add-SubdirectoryPathIfPresent "$env:USERPROFILE\bin"
-Add-PathIfPresent "$env:USERPROFILE\python"
+Add-PathIfPresent "$env:USERPROFILE\scripts\personal\python"
 
 # Import work specific code for work machines.
 if (Test-Path "$env:USERPROFILE\Documents\WindowsPowerShell\WorkSpecific\profile.ps1") {

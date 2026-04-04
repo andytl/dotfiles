@@ -1,72 +1,6 @@
 " Andrew's vimrc, made with only the best natural ingredients.
 
-"scriptencoding utf-8
 set encoding=utf-8
-" GVIM
-if has("gui_running")
-  if has("gui_gtk2")
-    set guifont=Inconsolata\ 12
-  elseif has("gui_macvim")
-    set guifont=Menlo\ Regular:h14
-  elseif has("gui_win32")
-    set guifont=DejaVu\ Sans\ Mono:h11:cANSI
-  endif
-endif
-"cd c:\Users\andlam
-
-" ================= Plugin Options =================
-" These options are for plugins, you can simply remove these
-" if you don't want any plugins.
-
-set nocompatible              " be iMproved, required
-set hidden
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/vundle'
-  Plugin 'chikamichi/mediawiki.vim'
-  Plugin 'digitaltoad/vim-jade'
-" ==== Plugins follow below ====
-"      Plugins are listed as Plugin <PluginName> followed by
-"      configuration options for it.
-  Plugin 'scrooloose/nerdtree'
-    map <C-n> :NERDTreeToggle<CR>
-" Plugin 'rking/ag.vim'
-    "let g:agprg="ag --column"
-" Plugin 'Valloric/YouCompleteMe'
-" Plugin 'bling/vim-airline'
-" Plugin 'tpope/vim-fugitive'
-" Plugin 'tpope/vim-surround'
-" Plugin 'tpope/vim-commentary'
-  Plugin 'kien/ctrlp.vim'
-    let g:ctrlp_map = '<c-p>'
-    let g:ctrlp_cmd = 'CtrlP'
-    let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\v[\/]((\.(git|hg|svn))|bin|build|lib|node_modules|obj|objd)$',
-      \ 'file': '\v\.(exe|so|dll)$',
-      \ 'link': 'some_bad_symbolic_links',
-      \ }
-" Plugin 'vim-scripts/taglist.vim'
-"   nnoremap <silent> <F8> :TlistToggle<CR>
-"  Plugin 'szw/vim-ctrlspace'
-  Plugin 'scrooloose/syntastic'
-    "map <C-b> :SyntasticCheck<CR>
-    "map <C-h> :SyntasticReset<CR>
-    let g:syntastic_java_javac_config_file_enabled = 1
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 0
-    let g:syntastic_check_on_open = 0
-    let g:syntastic_check_on_wq = 0
-    let g:syntastic_java_javac_delete_output = 1
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
 
 " ================= Vim Command line options =================
 set wildmode=longest,list,full "Command line completion
@@ -131,7 +65,7 @@ set nowrap " Disable wrapping lines because it gets annoying for small windows
 " ================= Set color theme =================
 let g:rehash256 = 1
 " See .vim/colors
-color monokai
+" color monokai
 
 " ================= User Keybinds =================
 

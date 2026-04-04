@@ -1,13 +1,13 @@
 [
     {
-        "Destination": "python",
+        "Destination": "scripts/personal/python",
         "Source": "python",
         "Platforms": ["Windows", "Mac", "Linux"]
     },
     {
-        "Destination": "scripts",
-        "Source": "scripts",
-        "Platforms": ["Windows", "Mac", "Linux"]
+        "Destination": "scripts/personal/bash",
+        "Source": "bash/scripts",
+        "Platforms": ["Mac", "Linux"]
     },
     {
         "Destination": ".gitconfig",
