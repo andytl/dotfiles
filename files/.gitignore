@@ -5,6 +5,7 @@
 .agignore
 *_ignore
 *.ignore.*
+.vscode/
 
 # Bond artifacts
 *Rules_Bond*
