@@ -34,6 +34,7 @@
 	rbd = rebase develop
 	rbm = rebase master
 	rbim = rebase --interactive master
+	rbid = rebase --interactive develop
 	rbi = rebase --interactive
 	rbc = rebase --continue
 	rba = rebase --abort
@@ -57,6 +58,8 @@
 	p = pull
 	fp = fetch origin --prune
 	rc = config --global -e
+	sm = submodule
+	smu = submodule update
 
 [push]
 	default = current
