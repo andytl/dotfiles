@@ -13,13 +13,45 @@
         {
             "command": 
             {
+                "action": "moveTab",
+                "direction": "backward"
+            },
+            "id": "User.moveTab.EF07D31B"
+        },
+        {
+            "command": 
+            {
                 "action": "prevTab"
             },
             "id": "User.prevTab.0"
         },
         {
+            "command": 
+            {
+                "action": "sendInput",
+                "input": "\u001b\r"
+            },
+            "id": "User.sendInput.8F63D3A9"
+        },
+        {
             "command": "paste",
             "id": "User.paste"
+        },
+        {
+            "command": 
+            {
+                "action": "moveTab",
+                "direction": "forward"
+            },
+            "id": "User.moveTab.793E2350"
+        },
+        {
+            "command": 
+            {
+                "action": "sendInput",
+                "input": "\u001b"
+            },
+            "id": "User.sendInput.38DC36AC"
         }
     ],
     "copyFormatting": "none",
@@ -28,8 +60,28 @@
     "keybindings": 
     [
         {
+            "id": "Terminal.ScrollDown",
+            "keys": "ctrl+down"
+        },
+        {
+            "id": "User.moveTab.EF07D31B",
+            "keys": "ctrl+alt+pgup"
+        },
+        {
+            "id": "User.sendInput.8F63D3A9",
+            "keys": "shift+enter"
+        },
+        {
+            "id": "User.sendInput.38DC36AC",
+            "keys": "ctrl+backspace"
+        },
+        {
             "id": "Terminal.ScrollUp",
             "keys": "ctrl+up"
+        },
+        {
+            "id": "User.moveTab.793E2350",
+            "keys": "ctrl+alt+pgdn"
         },
         {
             "id": "User.prevTab.0",
@@ -38,10 +90,6 @@
         {
             "id": "User.nextTab.0",
             "keys": "ctrl+pgdn"
-        },
-        {
-            "id": "Terminal.ScrollDown",
-            "keys": "ctrl+down"
         },
         {
             "id": "User.paste",
@@ -58,6 +106,7 @@
     {
         "defaults": 
         {
+            "bellStyle": "none",
             "colorScheme": "Monokai",
             "font": 
             {
@@ -115,6 +164,18 @@
                 "hidden": true,
                 "name": "Visual Studio Debug Console",
                 "source": "VSDebugConsole"
+            },
+            {
+                "guid": "{d403f4e5-5b34-56ea-a0c0-4e5b54719bf2}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 18",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{81f114b5-38cb-5386-a05e-2ba6b5a109ec}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 18",
+                "source": "Windows.Terminal.VisualStudio"
             }
         ]
     },

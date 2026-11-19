@@ -32,8 +32,6 @@
     "gitlens.codeLens.enabled": false,
     "gitlens.currentLine.enabled": false,
     "gitlens.currentLine.pullRequests.enabled": false,
-    /* Language specific plugins settings */
-    "C_Cpp.configurationWarnings": "Disabled",
     "C_Cpp.default.enableConfigurationSquiggles": false,
     "C_Cpp.dimInactiveRegions": false,
     "nmake.selfhost-ring": "Canary",
@@ -59,4 +57,12 @@
     },
     "terminal.integrated.defaultProfile.windows": "PowerShell",
     "diffEditor.renderSideBySide": false,
+    "chat.disableAIFeatures": true,
+    "powershell.promptToUpdatePowerShell": false,
+    "remote.SSH.remotePlatform": {
+        "andlam-linux-vm": "linux"
+    },
+    "cmake.automaticReconfigure": false,
+    "git.blame.editorDecoration.enabled": false,
+    "C_Cpp.configurationWarnings": "Disabled",
 }

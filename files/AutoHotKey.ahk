@@ -14,14 +14,14 @@
 
 #j::
 {
-  Run "notepad.exe %A_MyDocuments%\AutoHotKey.ahk"
+  Run "notepad " A_MyDocuments "\AutoHotKey.ahk"
   Sleep 5000  
-  WinActivate "AutoHotKey.ahk - Notepad"
+  WinActivate "AutoHotKey.ahk"
 }
 
 #u::
 {
-  Run "notepad" "%A_MyDocuments%\AutoHotKeyU64_WorkSpecific.ahk" ; "C:\Program Files (x86)\Vim\vim74\gvim.exe"
+  Run "notepad " A_MyDocuments "\AutoHotKeyU64_WorkSpecific.ahk"
   Sleep 5000
   WinActivate "AutoHotKey"
 }

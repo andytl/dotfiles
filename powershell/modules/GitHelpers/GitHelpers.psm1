@@ -43,6 +43,58 @@ function Get-GitModifiedFiles {
     ForEach-Object { $_.RepoPath }
 }
 
+# Get all git branches which contain the given string
+function Get-BranchesWithNeedle {
+    param (
+        $branchIncludePatterns = ".*",
+        $branchExcludePatternsRegex = "(user/.*)|(users/.*)",
+        $fileGlob = "*",
+        $needle
+    )
+
+    if (-not $needle)
+    {
+        throw "No pattern specified"
+    }
+
+    $branchMap = @{}
+    $branchArgs = [System.Collections.ArrayList]::new()
+    $branchArgs.AddRange(@(
+        "--all", #list both remote-tracking and local branches.
+        "--no-abbrev",
+        "--verbose"
+    ))
+
+    $branches = git branch @branchArgs
+    $branches | & { process {
+        if ($_.StartsWith("*"))
+        {
+            # Trim active branch indicator
+            $_ = $_.Substring(1)
+        }
+        $split = ($_.Trim() -split "\s+")
+        if (($split[0] -notmatch $branchIncludePatterns) -or
+            ($split[0] -match $branchExcludePatternsRegex))
+        {
+            return;
+        }
+        $branchMap[$split[0]] = $split[1] # name=>commithash
+    }}
+
+    $found = [System.Collections.ArrayList]::new();
+    $branchMap.GetEnumerator() | & { begin {$i = 0} process {
+        $result = git grep -e $needle $_.Value -- $fileGlob
+        Write-Progress -Activity "Searching $($branchMap.Count) branches" -Status $_.Key -PercentComplete ($i * 100 / $branchMap.Count)
+        [void]++$i
+        if ($result)
+        {
+            [void]$found.Add($_.Key)
+        }
+    }}
+
+    $found | Sort-Object
+
+}
 
 function gbctp ($branchName, $commitMessage) {
   git checkout -b $branchName
