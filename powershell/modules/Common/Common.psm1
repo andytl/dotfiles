@@ -134,6 +134,21 @@ function Read-UserChoiceFromArray {
     $choices[$choiceIndex - 1];
 }
 
+function Get-RunningVMByName {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [string] $Name
+    )
+
+    $vm = @(Get-VM -Name $Name -ErrorAction Stop | Where-Object { $_.Name -eq $Name })
+    if ($vm.Count -ne 1 -or $vm[0].State -ne 'Running') {
+        throw "Expected exactly one running VM named '$Name'."
+    }
+    $vm[0]
+}
+
 function Get-RunningVM {
     while ($true) {
         $vm = Get-VM | Where-Object { $_.State -eq "Running" } | Select-Object -First 1

@@ -6,9 +6,12 @@
 [alias]
 	lg = log --graph --decorate=full --abbrev-commit
 	lgr = log --graph --decorate=full --abbrev-commit
-	lgro = log --graph --format=short --abbrev-commit --decorate=short --pretty=twolineclean
-	lgrs = log --graph --format=oneline --abbrev-commit --decorate=short --pretty=shortcustom
-	lgroh = log --graph --pretty=shortcustom --abbrev-commit --decorate=short --decorate-refs=refs/remotes/origin/ --remotes=origin/release/* origin/develop
+	lgro = log --graph --abbrev-commit --decorate=short --pretty=twolineclean
+	lgrs = log --graph --abbrev-commit --decorate=short --pretty=shortcustom
+	lgroh = log --graph --pretty=twolineclean --abbrev-commit --decorate=short --decorate-refs=refs/remotes/origin/ --remotes=origin/release/* origin/develop
+	lgrsh = log --graph --pretty=shortcustom --abbrev-commit --decorate=short --decorate-refs=refs/remotes/origin/ --remotes=origin/release/* origin/develop
+	lgroht = log --graph --pretty=twolineclean --abbrev-commit --decorate=short --remotes=origin/release/* origin/develop
+	lgrsht = log --graph --pretty=shortcustom --abbrev-commit --decorate=short --remotes=origin/release/* origin/develop
 	a = add .
 	s = status
 	st = stash
